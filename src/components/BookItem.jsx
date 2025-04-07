@@ -1,11 +1,11 @@
 function BookItem({ book }) {
   return (
-    <div className="book-card">
+    <li className="article articleHover">
       <h3>{book.titol}</h3>
       <p>
         <strong>Autor:</strong> ???
       </p>
-    </div>
+    </li>
   );
 }
 

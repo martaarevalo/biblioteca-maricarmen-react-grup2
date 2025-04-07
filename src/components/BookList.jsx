@@ -10,13 +10,13 @@ function BookList() {
   }, []);
 
   return (
-    <div className="container">
+    <ul className="articleUl">
       {books.length > 0 ? (
         books.map((book) => <BookItem key={book.id} book={book} />)
       ) : (
         <p>Cargando libros...</p>
       )}
-    </div>
+    </ul>
   );
 }
 

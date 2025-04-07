@@ -31,6 +31,10 @@ export function AppProvider({ children }) {
 
       setUserInfo({ type: typeOfUser, data: info });
       setStateFromPage("landingPage");
+      return true;
+    } else {
+      console.log("Login incorrecto");
+      return false;
     }
   }
 

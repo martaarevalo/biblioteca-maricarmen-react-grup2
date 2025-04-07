@@ -1,49 +1,302 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #00000000;
-  text-align: center;
+/*****************************************
+MARK: Fuente
+******************************************/
+
+@font-face {
+  font-family: "BebasNeue";
+  font-weight: normal;
+  font-style: normal;
+  src: url('../font/BebasNeue-Regular.ttf') format('truetype');
 }
 
-.container {
-  max-width: 800px;
-  margin: 20px auto;
+/*****************************************
+MARK: Root
+******************************************/
+
+:root{
+  --strongBlue: #214093ff;
+  --mediumBlue: #5C74B0ff;
+  --lightBlue: #90A2C7ff;
+  --babyBlue: #DDE1F1ff;
+  --white: #FFFFFFff;
+  --strongGrey: #4b4a4a;
+  --lightGrey: #a3a3a3;
+  --titelFont: "BebasNeue";
 }
 
-.book-card {
-  background: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
-  text-align: left;
+*{
+  font-family: Arial;
 }
 
-header{
+/*****************************************
+MARK: Titulos
+******************************************/
+
+.h1{
+  color: var(--strongBlue);
+  font-family: var(--titelFont);
+  font-size: 5rem;
+}
+
+.h2{
+  color: var(--mediumBlue);
+  font-family: var(--titelFont);
+  font-size: 4rem;
+}
+
+.h3{
+  color: var(--lightBlue);
+  font-family: var(--titelFont);
+  font-size: 3rem;
+}
+
+.titelFont{
+  font-family: var(--titelFont);
+}
+
+.b{
+  font-weight: bold;
+}
+
+/*****************************************
+MARK: button
+******************************************/
+.button{
+  background-color: var(--strongBlue);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover{
+  background-color: var(--mediumBlue);
+}
+
+.buttonCancel{
+  background-color: var(--strongGrey);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonCancel:hover{
+  background-color: var(--lightGrey);
+}
+
+
+/*****************************************
+MARK: Layout del Login
+******************************************/
+
+.centerDiv {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px var(--babyBlue);
 }
 
-h1 {
-  color: #ffffff;
+.centerDiv img {
+  width: 150px;
+  margin-bottom: 1rem;
 }
 
-h3 {
-  color: #007bff;
+.centerDiv form {
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
-h4 {
-  margin-top: 10px;
+.centerDiv form div {
+  margin-bottom: 1.5rem;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.centerDiv form label {
+  color: var(--strongBlue);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: capitalize;
 }
 
-ul li {
-  background: #e9ecef;
-  padding: 5px;
-  margin: 5px 0;
-  border-radius: 3px;
+.centerDiv form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  border: 2px solid var(--lightBlue);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.centerDiv form input:focus {
+  outline: none;
+  border-color: var(--strongBlue);
+  box-shadow: 0 0 5px rgba(33, 64, 147, 0.3);
+}
+
+.centerDiv button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Mensaje de error oculto por defecto */
+.centerDiv p {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  display: none;
+}
+
+.error-visible {
+  display: block !important;
+}
+
+/*****************************************
+MARK: Nav
+******************************************/
+.nav{
+  /*display: flex;
+  background-color: var(--strongBlue);*/
+}
+
+.nav ul{
+  width: 100%;
+  max-width: 1440px;
+  /*padding: 10px 0px;*/
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.nav ul li {
+
+}
+
+.nav ul li a{
+
+}
+
+.nav ul li a p {
+  position: relative;
+  display: inline-block;
+  padding: 15px;
+  color: var(--strongBlue);
+  font-size: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav ul li a p::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--strongBlue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav ul li a p:hover {
+  color: var(--strongBlue);
+  transform: translateY(5px);
+}
+
+.nav ul li a p:hover::after {
+  transform: scaleX(1);
+}
+
+/*****************************************
+MARK: Article
+******************************************/
+
+.article {
+  padding: 1.5rem;
+  background-color: var(--babyBlue);
+  color: var(--strongGrey);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.articleHover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/*****************************************
+MARK: ArticleUl
+******************************************/
+
+.articleUl li{
+  margin-bottom: 1rem;
+}
+
+.articleUl li article{
+  display: flex;
+  height: 15rem;
+}
+
+.articleUl li article img{
+  height: 100%;
+  margin-right: 2rem;
+}
+
+/*****************************************
+MARK: Footer
+******************************************/
+
+.footer{
+  background-color: var(--strongBlue);
+  color: var(--white);
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer div.footerTop{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.footer div.footerTop img{
+  width: 100%;
+}
+
+.footer div.footerBottom{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0rem;
+}
+
+.footer div.footerBottom p{
+  margin: 0rem 0.5rem;
+}
+
+.footer a{
+  text-decoration: underline;
+
+}
+
+.footer div ul li{
+  margin: 0.5rem 0rem;
 }

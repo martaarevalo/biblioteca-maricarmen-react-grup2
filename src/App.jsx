@@ -1,7 +1,7 @@
 import { AppProvider } from "./context/AppContext";
 import Header from "./components/Header";
 import MainArea from "./components/MainArea";
-import "./App.css";
+import "./reset.css";
 import "./styles.css";
 
 function App() {
