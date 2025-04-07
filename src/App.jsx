@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import BookList from "./components/BookList";
 import "./styles.css";
 import Header from "./components/Header";
 import MainArea from "./components/MainArea";
@@ -27,27 +26,38 @@ function App() {
 
       const token = localStorage.getItem("token");
       const info = await getUserInfo(token);
-      setUserInfo(info);
+      let typeOfUser;
+      
 
       if (info?.is_superuser) {
         console.log("Es superadmin");
-        setStateFromPage("adminPage");
+        typeOfUser = "superadmin";
       } else if (info?.is_staff) {
         console.log("Es staff");
-        setStateFromPage("staffPage");
+        typeOfUser = "staff";
       } else {
         console.log("Es usuario normal");
-        setStateFromPage("userPage");
+        typeOfUser = "normal";
       }
+
+      setUserInfo({ type: typeOfUser, data: info });
+      setStateFromPage("landingPage");
     } else {
       console.log("Login fallido");
     }
   }
 
+  function handleLogOut() {
+    console.log("Cerrando sesión...");
+    localStorage.removeItem("token");
+    setUserInfo(null);
+    setStateFromPage("landingPage");
+  }
+
   return (
     <>
-      <Header handleState={handleState} />
-      <MainArea stateFromPage={stateFromPage} checkLogin={checkLogin} />
+      <Header userInfo={userInfo} handleState={handleState} handleLogOut={handleLogOut}/>
+      <MainArea stateFromPage={stateFromPage} userInfo={userInfo} checkLogin={checkLogin} />
     </>
   );
 }

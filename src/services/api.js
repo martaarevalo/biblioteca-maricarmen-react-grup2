@@ -2,7 +2,7 @@ const API_URL = "http://localhost:8000/api";
 
 export const getBooks = () => {
   console.log("llamando API...");
-  return fetch(API_URL)
+  return fetch(`${API_URL}/llibres/`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Error al obtener los libros");
