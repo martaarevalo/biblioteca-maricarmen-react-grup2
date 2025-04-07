@@ -1,13 +1,15 @@
-export default function Login({checkLogin}) {
+import { useAppContext } from "../context/AppContext";
 
-    console.log("Estoy en el Login")
+export default function Login() {
+  const { checkLogin } = useAppContext();
+
+  console.log("Estoy en el Login");
 
   function handleSubmit(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
 
-    checkLogin(fd.get(`username`), fd.get(`password`))
-
+    checkLogin(fd.get("username"), fd.get("password"));
   }
 
   return (
@@ -18,19 +20,13 @@ export default function Login({checkLogin}) {
         <div>
           <label htmlFor="username">Usuari:</label>
           <br />
-          <input
-            type="text"
-            name="username"
-          />
+          <input type="text" name="username" />
         </div>
 
         <div>
           <label htmlFor="password">Contrasenya:</label>
           <br />
-          <input
-            type="password"
-            name="password"
-          />
+          <input type="password" name="password" />
         </div>
 
         <button type="submit">Iniciar sesió</button>
