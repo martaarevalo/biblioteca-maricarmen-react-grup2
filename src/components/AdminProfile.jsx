@@ -81,7 +81,13 @@ export default function AdminProfile({ userDetails }) {
                     onChange={handleInputChange}
                   />
                 </label>
-                <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: "1rem",
+                  }}
+                >
                   <button className="buttonCancel" onClick={handleCancel}>
                     Cancelar
                   </button>
@@ -91,37 +97,109 @@ export default function AdminProfile({ userDetails }) {
                 </div>
               </div>
             ) : (
-              <div>
-                <button
-                  className="button"
-                  onClick={handleEdit}
-                >
-                  Editar
-                </button>
-                <p>
-                  <strong>Nombre de usuario:</strong> {currentDetails.username}
-                </p>
-                <p>
-                  <strong>Email:</strong> {currentDetails.email}
-                </p>
-                <p>
-                  <strong>Nombre:</strong> {currentDetails.first_name}
-                </p>
-                <p>
-                  <strong>Apellido:</strong> {currentDetails.last_name}
-                </p>
+              <div className="profile-container">
+                <div className="profile-content">
+                  <div className="profile-image-container">
+                    <img
+                      src={
+                        currentDetails.profile_image || "default_profile.png"
+                      }
+                      alt="Foto de perfil"
+                      className="profile-image"
+                    />
+                    <button
+                      className="button profile-edit-button"
+                      onClick={handleEdit}
+                    >
+                      Editar
+                    </button>
+                  </div>
+                  <div className="profile-data">
+                    <div className="profile-row">
+                      <div className="profile-field">
+                        <span className="profile-field-label">
+                          Nombre de usuario
+                        </span>
+                        <div className="profile-field-value">
+                          {currentDetails.username}
+                        </div>
+                      </div>
+                      <div className="profile-field">
+                        <span className="profile-field-label">Nombre</span>
+                        <div className="profile-field-value">
+                          {currentDetails.first_name}
+                        </div>
+                      </div>
+                      <div className="profile-field">
+                        <span className="profile-field-label">Apellido</span>
+                        <div className="profile-field-value">
+                          {currentDetails.last_name}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="profile-row">
+                      <div className="profile-field">
+                        <span className="profile-field-label">Email</span>
+                        <div className="profile-field-value">
+                          {currentDetails.email}
+                        </div>
+                      </div>
+                      <div className="profile-field">
+                        <span className="profile-field-label">Teléfono</span>
+                        <div className="profile-field-value">
+                          {currentDetails.phone || "No especificado"}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="profile-row">
+                      <div className="profile-field">
+                        <span className="profile-field-label">Centro</span>
+                        <div className="profile-field-value">
+                          {currentDetails.center || "No especificado"}
+                        </div>
+                      </div>
+                      <div className="profile-field">
+                        <span className="profile-field-label">Ciclo</span>
+                        <div className="profile-field-value">
+                          {currentDetails.cycle || "No especificado"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
         );
       case "listarUsuarios":
-        return <div><h3>Listar Usuarios</h3><p>Aquí se mostrarán los usuarios.</p></div>;
+        return (
+          <div>
+            <h3>Listar Usuarios</h3>
+            <p>Aquí se mostrarán los usuarios.</p>
+          </div>
+        );
       case "añadirCsv":
-        return <div><h3>Añadir CSV</h3><p>Aquí se podrá subir un archivo CSV.</p></div>;
+        return (
+          <div>
+            <h3>Añadir CSV</h3>
+            <p>Aquí se podrá subir un archivo CSV.</p>
+          </div>
+        );
       case "adminPanel":
-        return <div><h3>Admin Panel</h3><p>Opciones avanzadas para superadministradores.</p></div>;
+        return (
+          <div>
+            <h3>Admin Panel</h3>
+            <p>Opciones avanzadas para superadministradores.</p>
+          </div>
+        );
       default:
-        return <div><h3>Opción no válida</h3></div>;
+        return (
+          <div>
+            <h3>Opción no válida</h3>
+          </div>
+        );
     }
   };
 
@@ -157,9 +235,7 @@ export default function AdminProfile({ userDetails }) {
           )}
         </ul>
       </aside>
-      <main className="adminMain">
-        {renderPanelContent()}
-      </main>
+      <main className="adminMain">{renderPanelContent()}</main>
     </div>
   );
 }
