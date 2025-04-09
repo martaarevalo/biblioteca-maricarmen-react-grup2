@@ -51,3 +51,26 @@ export const getUserInfo = async (token) => {
     return null;
   }
 };
+
+//Buscador
+export const searchBooks = (query) => {
+  return fetch(`${API_URL}/llibres/`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error al buscar libros");
+      }
+      return response.json();
+    })
+    .then((books) => {
+      const searchQuery = query.toLowerCase();
+      return books.filter(
+        (book) =>
+          (book.titol && book.titol.toLowerCase().includes(searchQuery)) ||
+          (book.autor && book.autor.toLowerCase().includes(searchQuery))
+      );
+    })
+    .catch((error) => {
+      console.error("Error en la búsqueda:", error);
+      return [];
+    });
+};
