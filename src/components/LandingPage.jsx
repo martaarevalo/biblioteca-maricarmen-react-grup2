@@ -6,9 +6,16 @@ export default function LandingPage() {
 
   console.log(userInfo);
   return (
-    <>
-      <p>Landing Page</p>
+    <div className="landingPage">
+      <div className="catalog-header">
+        <h2>Catàleg</h2>
+        <input
+          type="text"
+          placeholder="Cerca al catàleg..."
+          className="search-input"
+        />
+      </div>
       <BookList />
-    </>
+    </div>
   );
 }
