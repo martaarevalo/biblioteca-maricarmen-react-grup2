@@ -52,6 +52,17 @@ export const getUserInfo = async (token) => {
   }
 };
 
+export async function importCSV(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_URL}/import-csv`, {
+      method: "POST",
+      body: formData,
+  });
+  return response.json();
+}
+
 //Buscador
 export const searchBooks = (query) => {
   return fetch(`${API_URL}/llibres/`)
@@ -73,4 +84,23 @@ export const searchBooks = (query) => {
       console.error("Error en la búsqueda:", error);
       return [];
     });
+};
+export const updateUserProfile = async (userDetails) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${API_URL}/usuari/actualitzar-perfil`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(userDetails),
+    });
+
+    if (!response.ok) throw new Error("Error al actualizar el perfil");
+    return true;
+  } catch (error) {
+    console.error("Error en la API:", error);
+    return false;
+  }
 };
