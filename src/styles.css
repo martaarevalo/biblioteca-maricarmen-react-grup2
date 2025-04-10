@@ -415,8 +415,15 @@ MARK: ArticleUl
 
 
 /*****************************************
-MARK: Admin Profile
+MARK: Profile
 ******************************************/
+.user-profile-panel {
+  max-width: 800px;
+  margin: 5rem auto;
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 8px;
+}
 
 .adminProfile {
   display: flex;
@@ -556,6 +563,43 @@ MARK: Admin Profile
   gap: 1rem;
   margin-top: 2rem;
   padding-right: 2rem;
+}
+
+/*****************************************
+MARK: Import CSV panel
+******************************************/
+
+.upload-container {
+  border: 2px solid var(--mediumBlue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2rem auto;
+}
+
+.file-name {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.status-container {
+  padding: 1rem;
+}
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-message {
+  text-align: left;
+  color: var(--strongBlue);
+  font-size: 1rem;
+  margin-top: 10px;
 }
 
 /*****************************************

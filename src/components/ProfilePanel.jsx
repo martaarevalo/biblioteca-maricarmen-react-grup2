@@ -8,9 +8,10 @@ export function ProfilePanel({
   handleEdit,
   handleCancel,
   handleSave,
+  className,
 }) {
   return (
-    <div>
+    <div className={className}>
       {isEditing ? (
         <div className="profile-container">
           <div className="profile-content">
@@ -69,8 +70,8 @@ export function ProfilePanel({
                   <span className="profile-field-label">Teléfono</span>
                   <input
                     type="text"
-                    name="phone"
-                    value={editedDetails.phone || ""}
+                    name="telefon"
+                    value={editedDetails.telefon || ""}
                     onChange={handleInputChange}
                     className="profile-input"
                   />
@@ -81,8 +82,8 @@ export function ProfilePanel({
                   <span className="profile-field-label">Centro</span>
                   <input
                     type="text"
-                    name="center"
-                    value={editedDetails.center || ""}
+                    name="centre"
+                    value={editedDetails.centre || ""}
                     onChange={handleInputChange}
                     className="profile-input"
                   />
@@ -91,8 +92,8 @@ export function ProfilePanel({
                   <span className="profile-field-label">Ciclo</span>
                   <input
                     type="text"
-                    name="cycle"
-                    value={editedDetails.cycle || ""}
+                    name="cicle"
+                    value={editedDetails.cicle || ""}
                     onChange={handleInputChange}
                     className="profile-input"
                   />
@@ -153,7 +154,7 @@ export function ProfilePanel({
                 <div className="profile-field">
                   <span className="profile-field-label">Teléfono</span>
                   <div className="profile-field-value">
-                    {currentDetails.phone || "No especificado"}
+                    {currentDetails.telefon || "No especificado"}
                   </div>
                 </div>
               </div>
@@ -161,13 +162,13 @@ export function ProfilePanel({
                 <div className="profile-field">
                   <span className="profile-field-label">Centro</span>
                   <div className="profile-field-value">
-                    {currentDetails.center || "No especificado"}
+                    {currentDetails.centre || "No especificado"}
                   </div>
                 </div>
                 <div className="profile-field">
                   <span className="profile-field-label">Ciclo</span>
                   <div className="profile-field-value">
-                    {currentDetails.cycle || "No especificado"}
+                    {currentDetails.cicle || "No especificado"}
                   </div>
                 </div>
               </div>
