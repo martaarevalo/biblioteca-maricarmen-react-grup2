@@ -1,4 +1,4 @@
-const API_URL = "https://biblioteca2.ieti.site//api";
+const API_URL = "https://biblioteca2.ieti.site/api";
 
 export const getBooks = () => {
   console.log("llamando API...");
