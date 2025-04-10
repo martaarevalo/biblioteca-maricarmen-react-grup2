@@ -415,8 +415,15 @@ MARK: ArticleUl
 
 
 /*****************************************
-MARK: Admin Profile
+MARK: Profile
 ******************************************/
+.user-profile-panel {
+  max-width: 800px;
+  margin: 5rem auto;
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 8px;
+}
 
 .adminProfile {
   display: flex;

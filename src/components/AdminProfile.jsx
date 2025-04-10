@@ -44,6 +44,7 @@ export default function AdminProfile({ userDetails }) {
       case "perfil":
         return (
           <ProfilePanel
+            className="profile-container" 
             isEditing={isEditing}
             currentDetails={currentDetails}
             editedDetails={editedDetails}

@@ -8,9 +8,10 @@ export function ProfilePanel({
   handleEdit,
   handleCancel,
   handleSave,
+  className,
 }) {
   return (
-    <div>
+    <div className={className}>
       {isEditing ? (
         <div className="profile-container">
           <div className="profile-content">
