@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { updateUserProfile, getUserInfo } from "../services/api";
+import { ProfilePanel } from "./ProfilePanel";
+import { ListUsersPanel } from "./ListUsersPanel";
+import { AddCsvPanel } from "./AddCsvPanel";
 
 export default function AdminProfile({ userDetails }) {
   const [selectedOption, setSelectedOption] = useState("perfil");
@@ -28,11 +31,9 @@ export default function AdminProfile({ userDetails }) {
     if (success) {
       alert("Perfil actualizado correctamente.");
       setIsEditing(false);
-
-      // Llamada para obtener los datos actualizados del usuario
       const token = localStorage.getItem("token");
       const updatedDetails = await getUserInfo(token);
-      setCurrentDetails(updatedDetails); // Actualiza los datos mostrados
+      setCurrentDetails(updatedDetails);
     } else {
       alert("Error al actualizar el perfil.");
     }
@@ -42,158 +43,23 @@ export default function AdminProfile({ userDetails }) {
     switch (selectedOption) {
       case "perfil":
         return (
-          <div>
-            {isEditing ? (
-              <div>
-                <label>
-                  <strong>Nombre de usuario:</strong>
-                  <input
-                    type="text"
-                    name="username"
-                    value={editedDetails.username}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <label>
-                  <strong>Email:</strong>
-                  <input
-                    type="email"
-                    name="email"
-                    value={editedDetails.email}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <label>
-                  <strong>Nombre:</strong>
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={editedDetails.first_name}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <label>
-                  <strong>Apellido:</strong>
-                  <input
-                    type="text"
-                    name="last_name"
-                    value={editedDetails.last_name}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    gap: "1rem",
-                  }}
-                >
-                  <button className="buttonCancel" onClick={handleCancel}>
-                    Cancelar
-                  </button>
-                  <button className="button" onClick={handleSave}>
-                    Aceptar
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="profile-container">
-                <div className="profile-content">
-                  <div className="profile-image-container">
-                    <img
-                      src={
-                        currentDetails.profile_image || "default_profile.png"
-                      }
-                      alt="Foto de perfil"
-                      className="profile-image"
-                    />
-                    <button
-                      className="button profile-edit-button"
-                      onClick={handleEdit}
-                    >
-                      Editar
-                    </button>
-                  </div>
-                  <div className="profile-data">
-                    <div className="profile-row">
-                      <div className="profile-field">
-                        <span className="profile-field-label">
-                          Nombre de usuario
-                        </span>
-                        <div className="profile-field-value">
-                          {currentDetails.username}
-                        </div>
-                      </div>
-                      <div className="profile-field">
-                        <span className="profile-field-label">Nombre</span>
-                        <div className="profile-field-value">
-                          {currentDetails.first_name}
-                        </div>
-                      </div>
-                      <div className="profile-field">
-                        <span className="profile-field-label">Apellido</span>
-                        <div className="profile-field-value">
-                          {currentDetails.last_name}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="profile-row">
-                      <div className="profile-field">
-                        <span className="profile-field-label">Email</span>
-                        <div className="profile-field-value">
-                          {currentDetails.email}
-                        </div>
-                      </div>
-                      <div className="profile-field">
-                        <span className="profile-field-label">Teléfono</span>
-                        <div className="profile-field-value">
-                          {currentDetails.phone || "No especificado"}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="profile-row">
-                      <div className="profile-field">
-                        <span className="profile-field-label">Centro</span>
-                        <div className="profile-field-value">
-                          {currentDetails.center || "No especificado"}
-                        </div>
-                      </div>
-                      <div className="profile-field">
-                        <span className="profile-field-label">Ciclo</span>
-                        <div className="profile-field-value">
-                          {currentDetails.cycle || "No especificado"}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <ProfilePanel
+            isEditing={isEditing}
+            currentDetails={currentDetails}
+            editedDetails={editedDetails}
+            handleInputChange={handleInputChange}
+            handleEdit={handleEdit}
+            handleCancel={handleCancel}
+            handleSave={handleSave}
+          />
         );
       case "listarUsuarios":
-        return (
-          <div>
-            <h3>Listar Usuarios</h3>
-            <p>Aquí se mostrarán los usuarios.</p>
-          </div>
-        );
+        return <ListUsersPanel />;
       case "añadirCsv":
-        return (
-          <div>
-            <h3>Añadir CSV</h3>
-            <p>Aquí se podrá subir un archivo CSV.</p>
-          </div>
-        );
-      case "adminPanel":
-        return (
-          <div>
-            <h3>Admin Panel</h3>
-            <p>Opciones avanzadas para superadministradores.</p>
-          </div>
-        );
+        return <AddCsvPanel />;
+    //   case "adminPanel":
+    //     console.log("Admin Panel Clicado");
+    //     return ;
       default:
         return (
           <div>

@@ -473,6 +473,38 @@ MARK: Admin Profile
   color: var(--strongGrey);
 }
 
+.profile-input {
+  width: calc(100% - 2px); /* Resta 2px para compensar el borde */
+  padding: 0.5rem;
+  border: 1px solid var(--lightBlue);
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: var(--strongGrey);
+  box-sizing: border-box; /* Importante: incluye padding y border en el width total */
+}
+
+.profile-field {
+  flex: 1;
+  border: 1px solid var(--lightBlue);
+  border-radius: 4px;
+  padding: 1rem;
+  box-sizing: border-box; /* Asegura que el padding no se añada al width total */
+}
+
+.profile-input:focus {
+  outline: none;
+  border-color: var(--strongBlue);
+  box-shadow: 0 0 5px rgba(33, 64, 147, 0.3);
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-right: 2rem;
+}
+
 /*****************************************
 MARK: Footer
 ******************************************/
