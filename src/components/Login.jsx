@@ -1,6 +1,6 @@
 import { useAppContext } from "../context/AppContext";
 import { useState } from "react";
-import iconLog from "../assets/iconLog.webp";
+import iconLog from "../assets/LogoET.webp";
 
 export default function Login() {
   const { checkLogin } = useAppContext();

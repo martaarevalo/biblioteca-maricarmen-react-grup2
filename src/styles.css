@@ -315,6 +315,13 @@ MARK: Catalog Header
   font-size: 0.9rem;
 }
 
+.more-results {
+  text-align: center;
+  color: var(--strongGrey);
+  font-style: italic;
+  background-color: var(--babyBlue);
+}
+
 /*****************************************
 MARK: Nav
 ******************************************/
