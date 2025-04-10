@@ -413,6 +413,195 @@ MARK: ArticleUl
   margin-right: 2rem;
 }
 
+
+/*****************************************
+MARK: Profile
+******************************************/
+.user-profile-panel {
+  max-width: 800px;
+  margin: 5rem auto;
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.adminProfile {
+  display: flex;
+  max-width: 1400px; /* Margen lateral */
+  margin: 2rem auto; /* Margen superior para separar del header */
+  gap: 2rem; /* Espaciado entre el aside y el main */
+  height: calc(80vh - 4rem); /* Reduce la altura al 80% de la pantalla menos el margen */
+}
+
+.adminAside {
+  width: 20%; /* Ancho del aside */
+  padding: 1rem;
+  border-right: 1px solid var(--lightGrey); /* Línea vertical que separa el aside del main */
+}
+
+.adminAside ul {
+  list-style: none;
+  padding: 0;
+}
+
+.adminAside li {
+  padding: 1rem 0.5rem; /* Incrementa el padding vertical y horizontal */
+  margin-bottom: 1rem; /* Más margen entre los elementos */
+  cursor: pointer;
+  color: var(--strongBlue); /* Color del texto */
+  font-weight: bold;
+  border-bottom: 1px solid var(--lightGrey); /* Línea inferior para separar los elementos */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.adminAside li:hover {
+  background-color: var(--babyBlue); /* Fondo al pasar el ratón */
+}
+
+.adminAside li.selected {
+  background-color: var(--lightBlue); /* Fondo para el elemento seleccionado */
+  color: var(--white); /* Cambia el color del texto para mayor contraste */
+}
+
+.adminAside li:last-child {
+  border-bottom: none; /* Elimina la línea inferior del último elemento */
+}
+
+.adminMain {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  padding: 1rem;
+  background-color: var(--white); /* Fondo blanco */
+  border: none; /* Elimina los bordes */
+  overflow-y: auto; /* Permite scroll si el contenido es muy grande */
+}
+
+/* MARK: Admin Profile - Form */
+/* Estilos para el perfil de administrador */
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-edit-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.profile-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--lightBlue);
+  border-radius: 8px;
+}
+
+.profile-data {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.profile-field {
+  flex: 1;
+  border: 1px solid var(--lightBlue);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.profile-field-label {
+  display: block;
+  color: var(--strongBlue);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-field-value {
+  font-size: 1.1rem;
+  color: var(--strongGrey);
+}
+
+.profile-input {
+  width: calc(100% - 2px); /* Resta 2px para compensar el borde */
+  padding: 0.5rem;
+  border: 1px solid var(--lightBlue);
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: var(--strongGrey);
+  box-sizing: border-box; /* Importante: incluye padding y border en el width total */
+}
+
+.profile-field {
+  flex: 1;
+  border: 1px solid var(--lightBlue);
+  border-radius: 4px;
+  padding: 1rem;
+  box-sizing: border-box; /* Asegura que el padding no se añada al width total */
+}
+
+.profile-input:focus {
+  outline: none;
+  border-color: var(--strongBlue);
+  box-shadow: 0 0 5px rgba(33, 64, 147, 0.3);
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-right: 2rem;
+}
+
+/*****************************************
+MARK: Import CSV panel
+******************************************/
+
+.upload-container {
+  border: 2px solid var(--mediumBlue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2rem auto;
+}
+
+.file-name {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.status-container {
+  padding: 1rem;
+}
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-message {
+  text-align: left;
+  color: var(--strongBlue);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
 /*****************************************
 MARK: Footer
 ******************************************/
@@ -454,4 +643,54 @@ MARK: Footer
 
 .footer div ul li{
   margin: 0.5rem 0rem;
+}
+
+/*****************************************
+MARK: Error Page Styles
+******************************************/
+
+body.error-page {
+    background-color: #003865;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+  }
+
+.container {
+    background-color: #004f8a;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+}
+
+.container h1 {
+    font-size: 6em;
+    margin: 0 0 10px;
+    color: white;
+}
+
+.container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00AEEF;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.container a:hover {
+    background-color: #008fcf;
 }
