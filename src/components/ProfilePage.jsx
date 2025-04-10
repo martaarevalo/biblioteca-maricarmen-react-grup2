@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
   return (
     <div className="profilePage">
-      <h2>Perfil del Usuario</h2>
+      <h2 className="h2">Perfil del Usuario</h2>
       {userDetails ? (
         <div>
           <p><strong>Nombre de usuario:</strong> {userDetails.username}</p>

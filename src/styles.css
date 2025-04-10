@@ -50,6 +50,12 @@ MARK: Titulos
   font-size: 3rem;
 }
 
+.h4 {
+  color: var(--mediumBlue);
+  font-family: var(--titelFont);
+  font-size: 2rem;
+}
+
 .titelFont{
   font-family: var(--titelFont);
 }
@@ -193,9 +199,9 @@ MARK: Header
 }
 
 .header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  color: var(--white);
+  font-family: var(--titelFont);
+  font-size: 3rem;
 }
 
 .header .nav-link {
@@ -421,6 +427,12 @@ MARK: Footer
   background-color: var(--strongBlue);
   color: var(--white);
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.footerContainer{
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 }

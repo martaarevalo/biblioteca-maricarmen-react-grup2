@@ -9,7 +9,7 @@ const SearchResults = ({ results, show }) => {
     <div className="search-results">
       {limitedResults.map((book) => (
         <div key={book.id} className="search-result-item">
-          <h4>{book.titol}</h4>
+          <h4 className="h4">{book.titol}</h4>
           {book.autor && <p>Autor: {book.autor}</p>}
         </div>
       ))}
