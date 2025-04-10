@@ -1,4 +1,3 @@
-// import { useAppContext } from "../context/AppContext";
 import { useState, useEffect, useCallback } from "react";
 import { searchBooks } from "../services/api";
 import BookList from "./BookList";
@@ -9,6 +8,7 @@ export default function LandingPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [books, setBooks] = useState([]); // Libros que se mostrarán en BookList
 
   const debouncedSearch = useCallback(
     (() => {
@@ -18,7 +18,7 @@ export default function LandingPage() {
         if (value.length >= 3) {
           timeoutId = setTimeout(() => {
             searchBooks(value).then((results) => {
-              setSearchResults(results);
+              setSearchResults(results.slice(0, 5)); // Recomendamos 5 libros
               setShowResults(true);
             });
           }, 1000);
@@ -39,6 +39,17 @@ export default function LandingPage() {
     setSearchTerm(e.target.value);
   };
 
+  const handleSearch = () => {
+    if (searchTerm.trim().length > 0) {
+      searchBooks(searchTerm).then((results) => {
+        setBooks(results);
+      });
+      setSearchTerm(""); 
+    } else {
+      setBooks([]);
+    }
+  };
+
   return (
     <div className="landingPage">
       <div className="catalog-header">
@@ -51,13 +62,14 @@ export default function LandingPage() {
             placeholder="Cerca al catàleg..."
             className="search-input"
           />
+          <button onClick={handleSearch}>Buscar</button>
           <SearchResults 
             results={searchResults} 
             show={showResults} 
           />
         </div>
       </div>
-      <BookList />
+      <BookList books={books} />
     </div>
   );
 }
