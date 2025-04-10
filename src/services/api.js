@@ -52,6 +52,17 @@ export const getUserInfo = async (token) => {
   }
 };
 
+export async function importCSV(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_URL}/import-csv`, {
+      method: "POST",
+      body: formData,
+  });
+  return response.json();
+}
+
 //Buscador
 export const searchBooks = (query) => {
   return fetch(`${API_URL}/llibres/`)

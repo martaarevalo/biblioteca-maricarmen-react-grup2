@@ -566,6 +566,43 @@ MARK: Profile
 }
 
 /*****************************************
+MARK: Import CSV panel
+******************************************/
+
+.upload-container {
+  border: 2px solid var(--mediumBlue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2rem auto;
+}
+
+.file-name {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.status-container {
+  padding: 1rem;
+}
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-message {
+  text-align: left;
+  color: var(--strongBlue);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/*****************************************
 MARK: Footer
 ******************************************/
 

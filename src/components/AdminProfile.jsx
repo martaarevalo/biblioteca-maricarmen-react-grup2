@@ -54,8 +54,8 @@ export default function AdminProfile({ userDetails }) {
             handleSave={handleSave}
           />
         );
-      case "listarUsuarios":
-        return <ListUsersPanel />;
+    // case "listarUsuarios":
+    //   return <ListUsersPanel />;
       case "añadirCsv":
         return <AddCsvPanel />;
     //   case "adminPanel":
@@ -64,7 +64,7 @@ export default function AdminProfile({ userDetails }) {
       default:
         return (
           <div>
-            <h3>Opción no válida</h3>
+            <h3>Opción actualmente en desarrollo</h3>
           </div>
         );
     }
