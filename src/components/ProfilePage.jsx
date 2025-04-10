@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { getUserInfo } from "../services/api";
+import AdminProfile from "./AdminProfile";
+import UserProfile from "./UserProfile";
 
 export default function ProfilePage() {
   const { userInfo } = useAppContext();
@@ -19,15 +21,12 @@ export default function ProfilePage() {
 
   return (
     <div className="profilePage">
-      <h2>Perfil del Usuario</h2>
       {userDetails ? (
-        <div>
-          <p><strong>Nombre de usuario:</strong> {userDetails.username}</p>
-          <p><strong>Email:</strong> {userDetails.email}</p>
-          <p><strong>Nombre:</strong> {userDetails.first_name}</p>
-          <p><strong>Apellido:</strong> {userDetails.last_name}</p>
-          <p><strong>Tipo de usuario:</strong> {userInfo?.type}</p>
-        </div>
+        userInfo?.type === "superadmin" || userInfo?.type === "staff" ? (
+          <AdminProfile userDetails={userDetails} />
+        ) : (
+          <UserProfile userDetails={userDetails} />
+        )
       ) : (
         <p>Cargando datos del usuario...</p>
       )}
