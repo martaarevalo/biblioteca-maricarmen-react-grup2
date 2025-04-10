@@ -52,7 +52,6 @@ export const getUserInfo = async (token) => {
   }
 };
 
-
 //Buscador
 export const searchBooks = (query) => {
   return fetch(`${API_URL}/llibres/`)
@@ -74,7 +73,7 @@ export const searchBooks = (query) => {
       console.error("Error en la búsqueda:", error);
       return [];
     });
-
+};
 export const updateUserProfile = async (userDetails) => {
   const token = localStorage.getItem("token");
   try {
