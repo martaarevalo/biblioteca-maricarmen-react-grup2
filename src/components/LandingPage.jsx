@@ -42,7 +42,7 @@ export default function LandingPage() {
   return (
     <div className="landingPage">
       <div className="catalog-header">
-        <h2>Catàleg</h2>
+        <h2 className="h2">Catàleg</h2>
         <div className="search-container">
           <input
             type="text"
