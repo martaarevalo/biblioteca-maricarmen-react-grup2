@@ -9,6 +9,7 @@ export default function LandingPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [books, setBooks] = useState([]); // Libros que se mostrarán en BookList
+  const [isLoading, setIsLoading] = useState(false);
 
   const debouncedSearch = useCallback(
     (() => {
@@ -39,12 +40,13 @@ export default function LandingPage() {
     setSearchTerm(e.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (searchTerm.trim().length > 0) {
-      searchBooks(searchTerm).then((results) => {
-        setBooks(results);
-      });
-      setSearchTerm(""); 
+      setIsLoading(true);
+      const results = await searchBooks(searchTerm);
+      setBooks(results);
+      setIsLoading(false);
+      setSearchTerm("");
     } else {
       setBooks([]);
     }
@@ -63,10 +65,8 @@ export default function LandingPage() {
             className="search-input"
           />
           <button onClick={handleSearch}>Buscar</button>
-          <SearchResults 
-            results={searchResults} 
-            show={showResults} 
-          />
+          {isLoading && <progress className="progress" max="100" />}
+          <SearchResults results={searchResults} show={showResults} />
         </div>
       </div>
       <BookList books={books} />

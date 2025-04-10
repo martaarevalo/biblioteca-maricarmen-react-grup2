@@ -64,27 +64,25 @@ export async function importCSV(file) {
 }
 
 //Buscador
-export const searchBooks = (query) => {
-  return fetch(`${API_URL}/llibres/`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error al buscar libros");
-      }
-      return response.json();
-    })
-    .then((books) => {
-      const searchQuery = query.toLowerCase();
-      return books.filter(
-        (book) =>
-          (book.titol && book.titol.toLowerCase().includes(searchQuery)) ||
-          (book.autor && book.autor.toLowerCase().includes(searchQuery))
-      );
-    })
-    .catch((error) => {
-      console.error("Error en la búsqueda:", error);
-      return [];
-    });
+export const searchBooks = async (query) => {
+  try {
+    const response = await fetch(`${API_URL}/llibres/`);
+    if (!response.ok) {
+      throw new Error("Error al buscar libros");
+    }
+    const books = await response.json();
+    const searchQuery = query.toLowerCase();
+    return books.filter(
+      (book) =>
+        (book.titol && book.titol.toLowerCase().includes(searchQuery)) ||
+        (book.autor && book.autor.toLowerCase().includes(searchQuery))
+    );
+  } catch (error) {
+    console.error("Error en la búsqueda:", error);
+    return [];
+  }
 };
+
 export const updateUserProfile = async (userDetails) => {
   const token = localStorage.getItem("token");
   try {
