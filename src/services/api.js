@@ -1,20 +1,5 @@
 const API_URL = "http://localhost:8000/api";
 
-export const getBooks = () => {
-  console.log("llamando API...");
-  return fetch(`${API_URL}/llibres/`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Error al obtener los libros");
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Error en la API:", error);
-      return [];
-    });
-};
-
 export const checkUser = async (userName, userPassword) => {
   const credentials = btoa(`${userName}:${userPassword}`);
   try {
@@ -66,7 +51,7 @@ export async function importCSV(file) {
 //Buscador
 export const searchBooks = async (query) => {
   try {
-    const response = await fetch(`${API_URL}/llibres/`);
+    const response = await fetch(`${API_URL}/cataleg/`);
     if (!response.ok) {
       throw new Error("Error al buscar libros");
     }
