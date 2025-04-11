@@ -49,18 +49,18 @@ export async function importCSV(file) {
 }
 
 //Buscador
-export const searchBooks = async (query) => {
+export const searchItems = async (query) => {
   try {
     const response = await fetch(`${API_URL}/cataleg/`);
     if (!response.ok) {
-      throw new Error("Error al buscar libros");
+      throw new Error("Error al buscar items");
     }
-    const books = await response.json();
+    const items = await response.json();
     const searchQuery = query.toLowerCase();
-    return books.filter(
-      (book) =>
-        (book.titol && book.titol.toLowerCase().includes(searchQuery)) ||
-        (book.autor && book.autor.toLowerCase().includes(searchQuery))
+    return items.filter(
+      (item) =>
+        (item.titol && item.titol.toLowerCase().includes(searchQuery)) ||
+        (item.autor && item.autor.toLowerCase().includes(searchQuery))
     );
   } catch (error) {
     console.error("Error en la búsqueda:", error);

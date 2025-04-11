@@ -1,12 +1,12 @@
-function ItemDetail({ book, onBack }) {
-  console.log(book)
+function ItemDetail({ item, onBack }) {
+  console.log(item)
   return (
     <div className="bookDetail">
       <button onClick={onBack}>Volver</button>
-      <h2>{book.titol}</h2>
-      <p><strong>Autor:</strong> {book.autor}</p>
-      {book.editorial && <p><strong>Editorial:</strong> {book.editorial}</p>}
-      {book.ISBN && <p><strong>ISBN:</strong> {book.ISBN}</p>}
+      <h2>{item.titol}</h2>
+      <p><strong>Autor:</strong> {item.autor}</p>
+      {item.editorial && <p><strong>Editorial:</strong> {item.editorial}</p>}
+      {item.ISBN && <p><strong>ISBN:</strong> {item.ISBN}</p>}
     </div>
   );
 }

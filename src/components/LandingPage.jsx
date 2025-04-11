@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { searchBooks } from "../services/api";
-import BookList from "./BookList";
+import { searchItems } from "../services/api";
+import ItemsList from "./ItemsList";
 import ItemDetail from "./ItemDetail";
 import SearchResults from "./SearchResults";
 
@@ -8,9 +8,9 @@ export default function LandingPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const [books, setBooks] = useState([]); // Libros que se mostrarán en BookList
+  const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [itemSelectedData, setItemSelectedData] = useState(null); // Libro seleccionado
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const debouncedSearch = useCallback(
     (() => {
@@ -19,7 +19,7 @@ export default function LandingPage() {
         clearTimeout(timeoutId);
         if (value.length >= 3) {
           timeoutId = setTimeout(() => {
-            searchBooks(value).then((results) => {
+            searchItems(value).then((results) => {
               setSearchResults(results.slice(0, 5));
               setShowResults(true);
             });
@@ -44,27 +44,27 @@ export default function LandingPage() {
   const handleSearch = async () => {
     if (searchTerm.trim().length > 0) {
       setIsLoading(true);
-      const results = await searchBooks(searchTerm);
-      setBooks(results);
+      const results = await searchItems(searchTerm);
+      setItems(results);
       setIsLoading(false);
       setSearchTerm("");
     } else {
-      setBooks([]);
+      setItems([]);
     }
   };
 
-  const handleSelectBook = (book) => {
-    setItemSelectedData(book);
+  const handleSelectItem = (item) => {
+    setSelectedItem(item);
   };
 
   const handleBack = () => {
-    setItemSelectedData(null);
+    setSelectedItem(null);
   };
 
   return (
     <div className="landingPage">
-      {itemSelectedData ? (
-        <ItemDetail book={itemSelectedData} onBack={handleBack} />
+      {selectedItem ? (
+        <ItemDetail item={selectedItem} onBack={handleBack} />
       ) : (
         <>
           <div className="catalog-header">
@@ -82,7 +82,7 @@ export default function LandingPage() {
               <SearchResults results={searchResults} show={showResults} />
             </div>
           </div>
-          <BookList books={books} onSelectItem={handleSelectBook} />
+          <ItemsList items={items} onSelectItem={handleSelectItem} />
         </>
       )}
     </div>
