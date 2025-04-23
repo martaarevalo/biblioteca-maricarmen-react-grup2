@@ -48,6 +48,26 @@ export async function importCSV(file) {
   return response.json();
 }
 
+export const updateUserProfile = async (userDetails) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${API_URL}/usuari/actualitzar-perfil`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(userDetails),
+    });
+
+    if (!response.ok) throw new Error("Error al actualizar el perfil");
+    return true;
+  } catch (error) {
+    console.error("Error en la API:", error);
+    return false;
+  }
+};
+
 //Buscador
 export const searchItems = async (query) => {
   try {
@@ -68,22 +88,19 @@ export const searchItems = async (query) => {
   }
 };
 
-export const updateUserProfile = async (userDetails) => {
-  const token = localStorage.getItem("token");
+//Item seleccionado
+export const fetchExemplars = async (itemId) => {
   try {
-    const response = await fetch(`${API_URL}/usuari/actualitzar-perfil`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(userDetails),
-    });
-
-    if (!response.ok) throw new Error("Error al actualizar el perfil");
-    return true;
+    const response = await fetch(`${API_URL}/cataleg/llibre/${itemId}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.exemplars;
+    } else {
+      console.error(`Error al obtener los ejemplares: ${response.status}`);
+      return [];
+    }
   } catch (error) {
-    console.error("Error en la API:", error);
-    return false;
+    console.error("Error de red:", error);
+    return [];
   }
 };
