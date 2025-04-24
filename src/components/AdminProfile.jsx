@@ -80,12 +80,12 @@ export default function AdminProfile({ userDetails }) {
           >
             Perfil
           </li>
-          <li
+          {/* <li
             className={selectedOption === "listarUsuarios" ? "selected" : ""}
             onClick={() => setSelectedOption("listarUsuarios")}
           >
-            Llistar usuaris
-          </li>
+            Llista d’usuaris
+          </li> */}
           <li
             className={selectedOption === "añadirCsv" ? "selected" : ""}
             onClick={() => setSelectedOption("añadirCsv")}
