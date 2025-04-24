@@ -14,6 +14,11 @@ function ItemDetail({ item, onBack }) {
     loadCatalegDetail();
   }, [item.id]);
 
+  const handleBorrow = () => {
+    console.log("Pop up de préstec");
+    // lògica per obrir un pop-up de préstec
+  };
+
   return (
     <div className="bookDetail">
       <div className="catalegHeader">
@@ -132,6 +137,9 @@ function ItemDetail({ item, onBack }) {
                     <strong>Centre:</strong> {exemplar.centre}
                   </p>
                 )}
+                {!exemplar.exclos_prestec && (
+                  <button onClick={handleBorrow}>Efectuar préstec</button>
+              )}
               </li>
             ))}
           </ul>
