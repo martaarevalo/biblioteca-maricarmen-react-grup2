@@ -5,7 +5,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <h1 className="logo">Biblioteca Maricarmen</h1>
+      <h1 className="logo">Biblioteca Maricarmen Brito</h1>
       <nav>
         <p className="nav-link" onClick={() => handleState("landingPage")}>Menu Principal</p>
         {userInfo ? (
