@@ -22,7 +22,7 @@ function ItemDetail({ item, onBack }) {
   return (
     <div className="bookDetail">
       <div className="catalegHeader">
-        <button onClick={onBack}>Volver</button>
+        <button onClick={onBack}>Tornar</button>
         <h2 className="h2">{item.titol}</h2>
       </div>
       
