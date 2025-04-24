@@ -89,18 +89,18 @@ export const searchItems = async (query) => {
 };
 
 //Item seleccionado
-export const fetchExemplars = async (itemId) => {
+export const fetchCatalegDetail = async (itemId) => {
   try {
-    const response = await fetch(`${API_URL}/cataleg/llibre/${itemId}`);
+    const response = await fetch(`${API_URL}/cataleg/${itemId}`);
     if (response.ok) {
       const data = await response.json();
-      return data.exemplars;
+      return data;
     } else {
-      console.error(`Error al obtener los ejemplares: ${response.status}`);
+      console.error(`Error al obtenir els detalls del catàleg: ${response.status}`);
       return [];
     }
   } catch (error) {
-    console.error("Error de red:", error);
+    console.error("Error de xarxa:", error);
     return [];
   }
 };
