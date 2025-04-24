@@ -9,11 +9,13 @@ export function ProfilePanel({
   handleCancel,
   handleSave,
   className,
+  statusMessage,
+  statusType,
 }) {
   return (
     <div className={className}>
       {isEditing ? (
-        <div className="profile-container">
+        <>
           <div className="profile-content">
             <div className="profile-image-container">
               <img
@@ -85,9 +87,14 @@ export function ProfilePanel({
               Aceptar
             </button>
           </div>
-        </div>
+        </>
       ) : (
-        <div className="profile-container">
+        <>
+          {statusMessage && (
+            <div className={`status-message ${statusType === "success" ? "success" : "error"}`}>
+              {statusMessage}
+            </div>
+          )}
           <div className="profile-content">
             <div className="profile-image-container">
               <img
@@ -150,7 +157,7 @@ export function ProfilePanel({
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
