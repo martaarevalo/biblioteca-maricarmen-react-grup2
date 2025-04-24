@@ -39,6 +39,14 @@ html, body {
   flex: 1;
 }
 
+.not-allowed{
+  cursor: not-allowed;
+}
+
+.disabled{
+  color: var(--lightGrey);
+}
+
 /*****************************************
 MARK: Titulos
 ******************************************/
@@ -608,7 +616,6 @@ MARK: Profile
 
 .profile-field-value {
   font-size: 1.1rem;
-  color: var(--strongGrey);
 }
 
 .profile-input {

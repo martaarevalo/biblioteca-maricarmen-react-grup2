@@ -26,45 +26,29 @@ export function ProfilePanel({
               <div className="profile-row">
                 <div className="profile-field">
                   <span className="profile-field-label">Nombre de usuario</span>
-                  <input
-                    type="text"
-                    name="username"
-                    value={editedDetails.username}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.username}
+                  </div>
                 </div>
                 <div className="profile-field">
                   <span className="profile-field-label">Nombre</span>
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={editedDetails.first_name}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.first_name}
+                  </div>
                 </div>
                 <div className="profile-field">
                   <span className="profile-field-label">Apellido</span>
-                  <input
-                    type="text"
-                    name="last_name"
-                    value={editedDetails.last_name}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.last_name}
+                  </div>
                 </div>
               </div>
               <div className="profile-row">
                 <div className="profile-field">
                   <span className="profile-field-label">Email</span>
-                  <input
-                    type="email"
-                    name="email"
-                    value={editedDetails.email}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.email}
+                  </div>
                 </div>
                 <div className="profile-field">
                   <span className="profile-field-label">Teléfono</span>
@@ -80,23 +64,15 @@ export function ProfilePanel({
               <div className="profile-row">
                 <div className="profile-field">
                   <span className="profile-field-label">Centro</span>
-                  <input
-                    type="text"
-                    name="centre"
-                    value={editedDetails.centre || ""}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.centre || "No especificado"}
+                  </div>
                 </div>
                 <div className="profile-field">
                   <span className="profile-field-label">Ciclo</span>
-                  <input
-                    type="text"
-                    name="cicle"
-                    value={editedDetails.cicle || ""}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.cicle || "No especificado"}
+                  </div>
                 </div>
               </div>
             </div>
