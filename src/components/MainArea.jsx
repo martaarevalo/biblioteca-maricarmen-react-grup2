@@ -11,6 +11,7 @@ export default function MainArea() {
       {stateFromPage === "landingPage" && <LandingPage userInfo={userInfo} />}
       {stateFromPage === "loginPage" && <Login checkLogin={checkLogin} />}
       {stateFromPage === "profilePage" && <ProfilePage userInfo={userInfo} />}
+      {stateFromPage === "historyPage" && <HistoryPage userInfo={userInfo} />}
     </>
   );
 }

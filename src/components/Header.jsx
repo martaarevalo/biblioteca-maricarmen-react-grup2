@@ -13,6 +13,9 @@ export default function Header() {
             <p className="nav-link" onClick={() => handleState("profilePage")}>
               Veure perfil
             </p>
+            <p className="nav-link" onClick={() => handleState("historyPage")}>
+              Historial de Prestecs
+            </p>
             <p className="nav-link" onClick={handleLogOut}>
               LogOut
             </p>

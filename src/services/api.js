@@ -104,3 +104,24 @@ export const updateUserProfile = async (userDetails) => {
     return false;
   }
 };
+
+export const getUserHistory = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${API_URL}/history`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al obtener el historial de préstecs");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error en la API (historial):", error);
+    return [];
+  }
+};
