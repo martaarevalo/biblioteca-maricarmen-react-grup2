@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { fetchCatalegDetail } from "../services/api";
+import { useAppContext } from "../context/AppContext";
 
 function ItemDetail({ item, onBack }) {
   const [catalegDetail, setCatalegDetail] = useState({});
+
+  const { userInfo } = useAppContext();
+  console.log(userInfo);
 
   useEffect(() => {
     const loadCatalegDetail = async () => {
@@ -137,9 +141,11 @@ function ItemDetail({ item, onBack }) {
                     <strong>Centre:</strong> {exemplar.centre}
                   </p>
                 )}
-                {!exemplar.exclos_prestec && (
+                {!exemplar.exclos_prestec && 
+                  userInfo?.type === "staff" &&
+                  exemplar.centre === userInfo?.data.centre && (
                   <button onClick={handleBorrow}>Efectuar préstec</button>
-              )}
+                )}
               </li>
             ))}
           </ul>
