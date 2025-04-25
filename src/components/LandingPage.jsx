@@ -1,14 +1,16 @@
-// import { useAppContext } from "../context/AppContext";
 import { useState, useEffect, useCallback } from "react";
-import { searchBooks } from "../services/api";
-import BookList from "./BookList";
+import { searchItems } from "../services/api";
+import ItemsList from "./ItemsList";
+import ItemDetail from "./ItemDetail";
 import SearchResults from "./SearchResults";
 
 export default function LandingPage() {
-  // const { userInfo } = useAppContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const debouncedSearch = useCallback(
     (() => {
@@ -17,8 +19,8 @@ export default function LandingPage() {
         clearTimeout(timeoutId);
         if (value.length >= 3) {
           timeoutId = setTimeout(() => {
-            searchBooks(value).then((results) => {
-              setSearchResults(results);
+            searchItems(value).then((results) => {
+              setSearchResults(results.slice(0, 5));
               setShowResults(true);
             });
           }, 1000);
@@ -39,25 +41,50 @@ export default function LandingPage() {
     setSearchTerm(e.target.value);
   };
 
+  const handleSearch = async () => {
+    if (searchTerm.trim().length > 0) {
+      setIsLoading(true);
+      const results = await searchItems(searchTerm);
+      setItems(results);
+      setIsLoading(false);
+      setSearchTerm("");
+    } else {
+      setItems([]);
+    }
+  };
+
+  const handleSelectItem = (item) => {
+    setSelectedItem(item);
+  };
+
+  const handleBack = () => {
+    setSelectedItem(null);
+  };
+
   return (
     <div className="landingPage">
-      <div className="catalog-header">
-        <h2>Catàleg</h2>
-        <div className="search-container">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={handleInputChange}
-            placeholder="Cerca al catàleg..."
-            className="search-input"
-          />
-          <SearchResults 
-            results={searchResults} 
-            show={showResults} 
-          />
-        </div>
-      </div>
-      <BookList />
+      {selectedItem ? (
+        <ItemDetail item={selectedItem} onBack={handleBack} />
+      ) : (
+        <>
+          <div className="catalog-header">
+            <h2 className="h2">Catàleg</h2>
+            <div className="search-container">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={handleInputChange}
+                placeholder="Cerca al catàleg..."
+                className="search-input"
+              />
+              <button onClick={handleSearch}>Buscar</button>
+              {isLoading && <progress className="progress" max="100" />}
+              <SearchResults results={searchResults} show={showResults} />
+            </div>
+          </div>
+          <ItemsList items={items} onSelectItem={handleSelectItem} />
+        </>
+      )}
     </div>
   );
 }
