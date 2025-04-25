@@ -21,7 +21,6 @@ export default function ProfilePage() {
 
   return (
     <div className="profilePage">
-      <h2 className="h2">Perfil del Usuario</h2>
       {userDetails ? (
         userInfo?.type === "superadmin" || userInfo?.type === "staff" ? (
           <AdminProfile userDetails={userDetails} />

@@ -7,6 +7,9 @@ export default function UserProfile({ userDetails }) {
   const [editedDetails, setEditedDetails] = useState({ ...userDetails });
   const [currentDetails, setCurrentDetails] = useState({ ...userDetails });
 
+  const [statusMessage, setStatusMessage] = useState(null);
+  const [statusType, setStatusType] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedDetails((prev) => ({ ...prev, [name]: value }));
@@ -24,14 +27,22 @@ export default function UserProfile({ userDetails }) {
   const handleSave = async () => {
     const success = await updateUserProfile(editedDetails);
     if (success) {
-      alert("Perfil actualizado correctamente.");
+      setStatusMessage("Dades canviades correctament");
+      setStatusType("success");
       setIsEditing(false);
       const token = localStorage.getItem("token");
       const updatedDetails = await getUserInfo(token);
       setCurrentDetails(updatedDetails);
     } else {
-      alert("Error al actualizar el perfil.");
+      setStatusMessage("S'ha produït algun error");
+      setStatusType("error");
+      setIsEditing(false);
     }
+
+    setTimeout(() => {
+      setStatusMessage(null);
+      setStatusType(null);
+    }, 3000);
   };
 
   return (
@@ -44,6 +55,8 @@ export default function UserProfile({ userDetails }) {
       handleEdit={handleEdit}
       handleCancel={handleCancel}
       handleSave={handleSave}
+      statusMessage={statusMessage}
+      statusType={statusType}
     />
   );
 }

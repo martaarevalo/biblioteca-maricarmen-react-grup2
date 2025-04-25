@@ -39,6 +39,14 @@ html, body {
   flex: 1;
 }
 
+.not-allowed{
+  cursor: not-allowed;
+}
+
+.disabled{
+  color: var(--lightGrey);
+}
+
 /*****************************************
 MARK: Titulos
 ******************************************/
@@ -608,7 +616,6 @@ MARK: Profile
 
 .profile-field-value {
   font-size: 1.1rem;
-  color: var(--strongGrey);
 }
 
 .profile-input {
@@ -642,6 +649,24 @@ MARK: Profile
   margin-top: 2rem;
   padding-right: 2rem;
 }
+
+.status-message {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.status-message.success {
+  color: green;
+  background-color: var(--babyBlue);
+}
+
+.status-message.error {
+  color: red;
+  background-color: var(--babyBlue);
+}
+
 
 /*****************************************
 MARK: Import CSV panel
