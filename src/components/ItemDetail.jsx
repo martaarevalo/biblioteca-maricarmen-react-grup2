@@ -22,7 +22,7 @@ function ItemDetail({ item, onBack }) {
   return (
     <div className="bookDetail">
       <div className="catalegHeader">
-        <button onClick={onBack}>Tornar</button>
+        <button className="button" onClick={onBack}>Tornar</button>
         <h2 className="h2">{item.titol}</h2>
       </div>
       
@@ -138,7 +138,7 @@ function ItemDetail({ item, onBack }) {
                   </p>
                 )}
                 {!exemplar.exclos_prestec && (
-                  <button onClick={handleBorrow}>Efectuar préstec</button>
+                  <button className="button" onClick={handleBorrow}>Efectuar préstec</button>
               )}
               </li>
             ))}

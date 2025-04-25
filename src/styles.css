@@ -19,6 +19,7 @@ MARK: Root
   --lightBlue: #90A2C7ff;
   --babyBlue: #DDE1F1ff;
   --white: #FFFFFFff;
+  --black: #202020;
   --strongGrey: #4b4a4a;
   --lightGrey: #a3a3a3;
   --titelFont: "PlusJakartaSans";
@@ -26,6 +27,11 @@ MARK: Root
 
 *{
   font-family: Arial;
+}
+
+html{
+  background-color: var(--white);
+  transition: background-color 0.3s ease;
 }
 
 html, body {
@@ -123,6 +129,7 @@ MARK: Layout del Login
   border-radius: 10px;
   box-shadow: 0 4px 15px var(--babyBlue);
   background-color: var(--white);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .centerDiv img {
@@ -215,6 +222,11 @@ MARK: Header
   font-size: 3rem;
 }
 
+.header .dark-mode-toggle{
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
 .header .nav-link {
   margin-right: 2rem;
   cursor: pointer;
@@ -266,18 +278,14 @@ MARK: Catalog Header
   margin-top: 5rem;
 }
 
-.catalog-header h2 {
-  font-size: 2rem;
-  color: var(--strongBlue);
-}
-
 .search-input {
   padding: 0.5rem;
-  border: 1px solid var(--lightBlue);
+  border: 2px solid var(--lightBlue);
   border-radius: 4px;
   font-size: 1rem;
   width: 200px;
-  transition: border-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-right: 10px;
 }
 
 .search-input:focus {
@@ -288,7 +296,7 @@ MARK: Catalog Header
 
 .search-container {
   position: relative;
-  width: 300px;
+  width: 320px;
 }
 
 .search-results {
@@ -302,7 +310,8 @@ MARK: Catalog Header
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 500;
+  transition: background-color 0.3s ease;
 }
 
 .search-result-item {
@@ -347,7 +356,6 @@ MARK: Catalog Item
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin-top: 4rem;
   margin-bottom: 2rem;
 }
@@ -381,6 +389,7 @@ MARK: Catalog Item
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-bottom: 20px;
 }
 
 .bookDetail ul.catalegDetail\.exemplarsList li:not(:last-child) {
@@ -397,7 +406,7 @@ MARK: Catalog Item
 .bookDetail ul.catalegDetail\.exemplarsList li button {
   position: absolute;
   right: 0.5rem;
-  bottom: 0.5rem;
+  bottom: calc(50% - 10px);
 }
 
 /*****************************************
@@ -465,12 +474,13 @@ MARK: Article
   color: var(--strongGrey);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   line-height: 1.6;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .articleHover:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 /*****************************************
@@ -495,11 +505,17 @@ MARK: ArticleUl
 /*****************************************
 MARK: Profile
 ******************************************/
+
+.profilePage {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+  margin-top: 5rem;
+}
 .user-profile-panel {
-  max-width: 800px;
+  max-width: 80%;
   margin: 5rem auto;
-  padding: 1rem;
-  background-color: var(--white);
   border-radius: 8px;
 }
 
@@ -553,7 +569,9 @@ MARK: Profile
   overflow-y: auto; /* Permite scroll si el contenido es muy grande */
 }
 
-/* MARK: Admin Profile - Form */
+/*****************************************
+MARK: Admin Profile - Form
+******************************************/
 /* Estilos para el perfil de administrador */
 .profile-image-container {
   display: flex;
@@ -777,4 +795,80 @@ body.error-page {
 
 .container a:hover {
     background-color: #008fcf;
+}
+
+/*****************************************
+MARK: Dark Mode
+******************************************/
+
+html.dark-mode{
+  background-color: var(--black);
+}
+
+html.dark-mode body{
+  color: var(--white);
+}
+
+html.dark-mode input,
+html.dark-mode .centerDiv {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+html.dark-mode .centerDiv form input {
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--strongGrey);
+}
+
+html.dark-mode .centerDiv form input:focus {
+  border-color: var(--lightGrey);
+}
+
+html.dark-mode input.search-input:focus {
+  background-color: var(--strongGrey);
+  border-color: var(--white);
+}
+
+html.dark-mode .centerDiv {
+  box-shadow: 0 4px 15px rgb(255 255 255 / 30%);
+}
+
+html.dark-mode .centerDiv form label{
+  color: var(--mediumBlue);
+}
+
+html.dark-mode .search-results{
+  background-color: var(--strongGrey);
+}
+
+html.dark-mode .search-result-item p{
+  color: var(--white);
+}
+
+html.dark-mode .search-result-item:hover  p{
+  color: var(--strongGrey);
+}
+
+html.dark-mode .search-result-item h4 {
+  color: var(--mediumBlue);
+}
+
+html.dark-mode .article {
+  background-color: var(--strongGrey);
+  color: var(--white);
+  box-shadow: unset;
+}
+
+html.dark-mode .bookDetail strong{
+  color: var(--mediumBlue);
+}
+
+html.dark-mode .profile-image, html.dark-mode .profile-field, html.dark-mode .profile-field .profile-field-value{
+  color: var(--white);
+  border-color: var(--white);
+}
+
+html.dark-mode .profile-field-label{
+  color: var(--mediumBlue);
 }

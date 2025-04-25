@@ -102,11 +102,14 @@ export function ProfilePanel({
             </div>
           </div>
           <div className="profile-actions">
-            <button className="buttonCancel" onClick={handleCancel}>
+            <button className="button buttonCancel" onClick={handleCancel}>
               Cancelar
             </button>
             <button className="button" onClick={handleSave}>
               Aceptar
+            </button>
+            <button className="button profile-edit-button" onClick={handleEdit}>
+              Editar
             </button>
           </div>
         </div>

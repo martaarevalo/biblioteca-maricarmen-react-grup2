@@ -29,11 +29,7 @@ export function AddCsvPanel() {
         <label htmlFor="fileInput" className="file-name">
           {selectedFile ? selectedFile.name : "Selecciona un archivo"}
         </label>
-        <button
-          onClick={handleUpload}
-          disabled={!selectedFile || isLoading}
-          style={{ marginLeft: "10px" }}
-        >
+        <button className="button" onClick={handleUpload} disabled={!selectedFile || isLoading}>
           {isLoading ? "Enviando..." : "Enviar"}
         </button>
         <input
