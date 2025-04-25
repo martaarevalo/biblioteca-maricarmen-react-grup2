@@ -6,6 +6,8 @@ import ProfilePage from "./ProfilePage";
 export default function MainArea() {
   const { stateFromPage, userInfo, checkLogin } = useAppContext();
 
+  console.log("stateFromPage:", stateFromPage);
+
   return (
     <>
       {stateFromPage === "landingPage" && <LandingPage userInfo={userInfo} />}

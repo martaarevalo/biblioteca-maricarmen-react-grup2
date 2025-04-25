@@ -6,29 +6,38 @@ export default function HistoryPage() {
   const { userInfo, handleState } = useAppContext();
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!userInfo || userInfo.type !== "normal") {
-      // Redirigir a la página principal si no es un usuario normal
       handleState("landingPage");
       return;
     }
 
     const fetchHistory = async () => {
-      const data = await getUserHistory();
-      setHistory(data);
-      setLoading(false);
+      try {
+        const data = await getUserHistory();
+        setHistory(data);
+      } catch (err) {
+        setError("Error al cargar el historial de préstecs.");
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchHistory();
   }, [userInfo, handleState]);
 
   if (!userInfo || userInfo.type !== "normal") {
-    return null; // Evitar renderizar contenido si no es un usuario normal
+    return null;
   }
 
   if (loading) {
     return <div className="loading">Cargando historial...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
   }
 
   return (
