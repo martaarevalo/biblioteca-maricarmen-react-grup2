@@ -1,38 +1,67 @@
-import { useState, useEffect } from 'react';
-import { getUserHistory } from '../services/api';
+import { useState, useEffect } from "react";
+import { getUserHistory } from "../services/api";
+import { useAppContext } from "../context/AppContext";
 
 export default function HistoryPage() {
-    const [history, setHistory] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        const fetchHistory = async () => {
-        const data = await getUserHistory();
-        setHistory(data);
-        setLoading(false);
-        };
-    
-        fetchHistory();
-    }, []);
-    
-    if (loading) {
-        return <div>Loading...</div>;
+  const { userInfo, handleState } = useAppContext();
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!userInfo || userInfo.type !== "normal") {
+      // Redirigir a la página principal si no es un usuario normal
+      handleState("landingPage");
+      return;
     }
-    
-    return (
-        <div>
-        <h1>Historial de llibres</h1>
-        {history.length === 0 ? (
-            <p>No hi ha llibres en el historial.</p>
-        ) : (
-            <ul>
-            {history.map((book) => (
-                <li key={book.id}>
-                {book.titol} - {book.autor}
-                </li>
+
+    const fetchHistory = async () => {
+      const data = await getUserHistory();
+      setHistory(data);
+      setLoading(false);
+    };
+
+    fetchHistory();
+  }, [userInfo, handleState]);
+
+  if (!userInfo || userInfo.type !== "normal") {
+    return null; // Evitar renderizar contenido si no es un usuario normal
+  }
+
+  if (loading) {
+    return <div className="loading">Cargando historial...</div>;
+  }
+
+  return (
+    <div className="history-page">
+      <h1>Historial de Préstecs</h1>
+      {history.length === 0 ? (
+        <p>No tienes préstecs registrados.</p>
+      ) : (
+        <table className="history-table">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Fecha de Préstec</th>
+              <th>Fecha de Retorno</th>
+              <th>Notas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {history.map((item) => (
+              <tr key={item.id}>
+                <td>{item.exemplar_title}</td>
+                <td>{new Date(item.loan_date).toLocaleDateString()}</td>
+                <td>
+                  {item.return_date
+                    ? new Date(item.return_date).toLocaleDateString()
+                    : "Pendiente"}
+                </td>
+                <td>{item.notes || "Sin notas"}</td>
+              </tr>
             ))}
-            </ul>
-        )}
-        </div>
-    );
-    }
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
