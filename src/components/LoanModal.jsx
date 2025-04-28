@@ -122,7 +122,7 @@ function LoanModal({ onClose, title, selectedExemplar, onSuccess }) {
                     Página {currentPage} de {totalPages}
                   </span>
                   <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-                    Siguiente
+                    Següent
                   </button>
                 </div>
               </>

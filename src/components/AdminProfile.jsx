@@ -77,7 +77,7 @@ export default function AdminProfile({ userDetails }) {
       default:
         return (
           <div>
-            <h3>Opción actualmente en desarrollo</h3>
+            <h3>Opció actualment en desenvolupament</h3>
           </div>
         );
     }
@@ -110,7 +110,7 @@ export default function AdminProfile({ userDetails }) {
               className={selectedOption === "adminPanel" ? "selected" : ""}
               onClick={() => setSelectedOption("adminPanel")}
             >
-              Admin Panel
+              Panel administratiu
             </li>
           )}
         </ul>

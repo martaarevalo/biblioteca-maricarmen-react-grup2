@@ -77,7 +77,7 @@ export default function LandingPage() {
                 placeholder="Cerca al catàleg..."
                 className="search-input"
               />
-              <button onClick={handleSearch}>Buscar</button>
+              <button onClick={handleSearch}>Cercar</button>
               {isLoading && <progress className="progress" max="100" />}
               <SearchResults results={searchResults} show={showResults} />
             </div>
