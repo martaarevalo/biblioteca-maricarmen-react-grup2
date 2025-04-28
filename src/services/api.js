@@ -105,3 +105,52 @@ export const fetchCatalegDetail = async (itemId) => {
     return [];
   }
 };
+
+//Buscar usuaris
+export const searchUsers = async (userInfoSearch) => {
+  try {
+    const response = await fetch(`${API_URL}/users/${userInfoSearch}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error(`Error al obtenir els usuaris: ${response.status}`);
+      return [];
+    }
+  } catch (error) {
+    console.error("Error de xarxa:", error);
+    return [];
+  }
+};
+
+//Realitzar préstec
+export const makeBorrow = async (userId, exemplarId) => {
+  const token = localStorage.getItem("token");
+
+  try {
+  
+    const response = await fetch(`${API_URL}/makeBorrow/${userId}/${exemplarId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      // Si la respuesta no es ok, mostrar el error
+      const data = await response.json();
+      console.error("Error al realizar el préstamo:", data.error);
+      return false;
+    }
+
+    // Si la respuesta es exitosa, devolver los datos de éxito
+    const data = await response.json();
+    console.log("Préstamo realizado con éxito:", data);
+    return true;
+    
+  } catch (error) {
+    console.error("Error de red o en la API:", error);
+    return false;
+  }
+};
