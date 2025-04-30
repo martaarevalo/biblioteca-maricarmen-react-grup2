@@ -28,7 +28,7 @@ export default function ProfilePage() {
           <UserProfile userDetails={userDetails} />
         )
       ) : (
-        <p>Cargando datos del usuario...</p>
+        <p>Carregant dades de l'usuari...</p>
       )}
     </div>
   );
