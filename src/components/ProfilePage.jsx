@@ -21,7 +21,6 @@ export default function ProfilePage() {
 
   return (
     <div className="profilePage">
-      <h2 className="h2">Perfil del Usuario</h2>
       {userDetails ? (
         userInfo?.type === "superadmin" || userInfo?.type === "staff" ? (
           <AdminProfile userDetails={userDetails} />
@@ -29,7 +28,7 @@ export default function ProfilePage() {
           <UserProfile userDetails={userDetails} />
         )
       ) : (
-        <p>Cargando datos del usuario...</p>
+        <p>Carregant dades de l'usuari...</p>
       )}
     </div>
   );

@@ -22,6 +22,14 @@ MARK: Root
   --black: #202020;
   --strongGrey: #4b4a4a;
   --lightGrey: #a3a3a3;
+
+  /* Colores 'bien' y 'mal'*/
+  --lightRed: #FDECEA;
+  --strongRed: #D32F2F;
+  --lightGreen: #E8F5E9;
+  --strongGreen: #388E3C;
+
+
   --titelFont: "PlusJakartaSans";
 }
 
@@ -43,6 +51,14 @@ html, body {
 
 #root {
   flex: 1;
+}
+
+.not-allowed{
+  cursor: not-allowed;
+}
+
+.disabled{
+  color: var(--lightGrey);
 }
 
 /*****************************************
@@ -409,6 +425,205 @@ MARK: Catalog Item
   bottom: calc(50% - 10px);
 }
 
+
+/*****************************************
+MARK: Loan Modal
+******************************************/
+
+.loan-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.loan-modal h2 {
+  color: var(--strongBlue);
+  font-family: var(--titelFont);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.loan-modal h3 {
+  color: var(--mediumBlue);
+  font-family: var(--titelFont);
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.loan-modal p {
+  color: var(--strongGrey);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.loan-modal .search-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.loan-modal .search-input input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid var(--lightBlue);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.loan-modal .search-input input:focus {
+  outline: none;
+  border-color: var(--strongBlue);
+  box-shadow: 0 0 5px rgba(33, 64, 147, 0.3);
+}
+
+.loan-modal .search-input button {
+  background-color: var(--strongBlue);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.loan-modal .search-input button:hover {
+  background-color: var(--mediumBlue);
+}
+
+.loan-modal .resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.loan-modal .resultsTable th {
+  background-color: var(--strongBlue);
+  color: var(--white);
+  text-align: left;
+  padding: 0.8rem;
+  font-weight: bold;
+}
+
+.loan-modal .resultsTable td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--babyBlue);
+}
+
+.loan-modal .resultsTable tr:hover {
+  background-color: var(--babyBlue);
+  transition: background-color 0.2s ease;
+}
+
+.loan-modal .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.loan-modal .pagination button {
+  background-color: var(--mediumBlue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loan-modal .pagination button:hover:not(:disabled) {
+  background-color: var(--strongBlue);
+}
+
+.loan-modal .pagination button:disabled {
+  background-color: var(--lightGrey);
+  cursor: not-allowed;
+}
+
+.loan-modal .selectedUserView {
+  background-color: var(--babyBlue);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.loan-modal .selectedUserView p {
+  margin: 0.5rem 0;
+}
+
+.loan-modal .selectedUserView strong {
+  color: var(--strongBlue);
+  display: inline-block;
+  width: 120px;
+}
+
+.loan-modal button {
+  background-color: var(--strongBlue);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 0.8rem;
+  font-weight: bold;
+}
+
+.loan-modal button:last-child {
+  margin-right: 0;
+  background-color: var(--strongGrey);
+}
+
+.loan-modal button:hover {
+  background-color: var(--mediumBlue);
+}
+
+.loan-modal button:last-child:hover {
+  background-color: var(--lightGrey);
+}
+
+
 /*****************************************
 MARK: Nav
 ******************************************/
@@ -482,6 +697,98 @@ MARK: Article
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+
+
+/*****************************************
+MARK: Paginador
+******************************************/
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  background-color: var(--mediumBlue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--strongBlue);
+  transform: translateY(-1px);
+}
+
+.pagination button:disabled {
+  background-color: var(--lightGrey);
+  color: var(--white);
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: var(--strongBlue);
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pagination button.disabled,
+.pagination button[disabled] {
+  background-color: var(--lightGrey);
+  cursor: not-allowed;
+}
+
+
+.pagination button[disabled].ellipsis {
+  background: transparent;
+  color: var(--strongGrey);
+  cursor: default;
+  padding: 0 0.5rem;
+}
+
+/*****************************************
+MARK: Estat de retorn dels exemplars
+******************************************/
+
+/*****************************************
+MARK: Estado de préstamo como curso/finalizado
+******************************************/
+
+.noRetornat {
+  position: relative;
+  opacity: 1;
+}
+
+.noRetornat::before {
+  content: "En curs";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--mediumBlue);
+}
+
+.retornat {
+  position: relative;
+  color: var(--strongGrey);
+  opacity: 0.6;
+}
+
+.retornat::before {
+  content: "Retornat";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--lightGrey);
+}
+
+
 
 /*****************************************
 MARK: ArticleUl
@@ -626,7 +933,6 @@ MARK: Admin Profile - Form
 
 .profile-field-value {
   font-size: 1.1rem;
-  color: var(--strongGrey);
 }
 
 .profile-input {
@@ -660,6 +966,24 @@ MARK: Admin Profile - Form
   margin-top: 2rem;
   padding-right: 2rem;
 }
+
+.status-message {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.status-message.success {
+  color: green;
+  background-color: var(--babyBlue);
+}
+
+.status-message.error {
+  color: red;
+  background-color: var(--babyBlue);
+}
+
 
 /*****************************************
 MARK: Import CSV panel
