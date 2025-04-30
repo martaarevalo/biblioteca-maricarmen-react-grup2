@@ -39,7 +39,7 @@ function ItemDetail({ item, onBack }) {
   return (
     <div className="bookDetail">
       <div className="catalegHeader">
-        <button onClick={onBack}>Tornar</button>
+        <button className="button" onClick={onBack}>Tornar</button>
         <h2 className="h2">{item.titol}</h2>
       </div>
       
@@ -154,10 +154,11 @@ function ItemDetail({ item, onBack }) {
                     <strong>Centre:</strong> {exemplar.centre}
                   </p>
                 )}
+
                 {!exemplar.exclos_prestec && 
                   userInfo?.type === "staff" &&
                   exemplar.centre === userInfo?.data.centre && (
-                  <button onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
+                  <button className="button" onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
                 )}
               </li>
             ))}

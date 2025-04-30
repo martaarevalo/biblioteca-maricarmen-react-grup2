@@ -80,11 +80,15 @@ export function ProfilePanel({
             </div>
           </div>
           <div className="profile-actions">
-            <button className="buttonCancel" onClick={handleCancel}>
+
+            <button className="buttonCancel buttonCancel" onClick={handleCancel}>
               Cancel·lar
             </button>
             <button className="button" onClick={handleSave}>
               Acceptar
+            </button>
+            <button className="button profile-edit-button" onClick={handleEdit}>
+              Editar
             </button>
           </div>
         </>
