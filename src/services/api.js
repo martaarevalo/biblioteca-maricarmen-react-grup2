@@ -154,3 +154,22 @@ export const makeBorrow = async (userId, exemplarId) => {
     return false;
   }
 };
+
+// Buscar préstecs
+export const fetchUserBorrows = async (userId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${API_URL}/usuari/${userId}/prestecs`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) throw new Error("Error al obtenir els préstecs");
+    return await response.json();
+  } catch (error) {
+    console.error("Error a la API:", error);
+    return [];
+  }
+};

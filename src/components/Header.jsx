@@ -10,6 +10,9 @@ export default function Header() {
         <p className="nav-link" onClick={() => handleState("landingPage")}>Menu Principal</p>
         {userInfo ? (
           <>
+            <p className="nav-link" onClick={() => handleState("historyBorrowsPage")}>
+              Historial préstecs
+            </p>
             <p className="nav-link" onClick={() => handleState("profilePage")}>
               Veure perfil
             </p>

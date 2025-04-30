@@ -6,7 +6,7 @@ function ItemsList({ items, onSelectItem }) {
   return (
     <ul className="articleUl">
       {items.map((item) => (
-        <Item key={item.id} item={item} onSelect={onSelectItem} />
+        <Item key={item.id} data={item} onSelect={onSelectItem} forPage="cataleg"/>
       ))}
     </ul>
   );
