@@ -21,6 +21,14 @@ MARK: Root
   --white: #FFFFFFff;
   --strongGrey: #4b4a4a;
   --lightGrey: #a3a3a3;
+
+  /* Colores 'bien' y 'mal'*/
+  --lightRed: #FDECEA;
+  --strongRed: #D32F2F;
+  --lightGreen: #E8F5E9;
+  --strongGreen: #388E3C;
+
+
   --titelFont: "PlusJakartaSans";
 }
 
@@ -734,6 +742,42 @@ MARK: Paginador
   cursor: default;
   padding: 0 0.5rem;
 }
+
+/*****************************************
+MARK: Estat de retorn dels exemplars
+******************************************/
+
+/*****************************************
+MARK: Estado de préstamo como curso/finalizado
+******************************************/
+
+.noRetornat {
+  position: relative;
+  opacity: 1;
+}
+
+.noRetornat::before {
+  content: "En curs";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--mediumBlue);
+}
+
+.retornat {
+  position: relative;
+  color: var(--strongGrey);
+  opacity: 0.6;
+}
+
+.retornat::before {
+  content: "Retornat";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--lightGrey);
+}
+
 
 
 /*****************************************

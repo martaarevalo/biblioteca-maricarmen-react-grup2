@@ -11,8 +11,9 @@ export default function Item({ data, onSelect, forPage }) {
       </li>
     );
   } else if (forPage === "borrows") {
+    const statusClass = data.retornat ? "retornat" : "noRetornat";
     content = (
-      <li className="article">
+      <li className={`article ${statusClass}`}>
         <h4 className="h4">{data.titol}</h4>
         <p>
           <strong>Exemplar:</strong> {data.exemplar}
