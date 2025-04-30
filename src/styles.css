@@ -680,6 +680,62 @@ MARK: Article
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+
+/*****************************************
+MARK: Paginador
+******************************************/
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  background-color: var(--mediumBlue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--strongBlue);
+  transform: translateY(-1px);
+}
+
+.pagination button:disabled {
+  background-color: var(--lightGrey);
+  color: var(--white);
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: var(--strongBlue);
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pagination button.disabled,
+.pagination button[disabled] {
+  background-color: var(--lightGrey);
+  cursor: not-allowed;
+}
+
+
+.pagination button[disabled].ellipsis {
+  background: transparent;
+  color: var(--strongGrey);
+  cursor: default;
+  padding: 0 0.5rem;
+}
+
+
 /*****************************************
 MARK: ArticleUl
 ******************************************/
