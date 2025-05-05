@@ -87,9 +87,6 @@ export function ProfilePanel({
             <button className="button" onClick={handleSave}>
               Acceptar
             </button>
-            <button className="button profile-edit-button" onClick={handleEdit}>
-              Editar
-            </button>
           </div>
         </>
       ) : (
