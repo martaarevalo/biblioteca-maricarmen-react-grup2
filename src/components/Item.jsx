@@ -13,26 +13,19 @@ export default function Item({ data, onSelect, forPage }) {
   } else if (forPage === "borrows") {
     const statusClass = data.retornat ? "retornat" : "noRetornat";
     content = (
-      <li className={`article ${statusClass}`}>
-        <h4 className="h4">{data.titol}</h4>
-        <p>
-          <strong>Exemplar:</strong> {data.exemplar}
-        </p>
-        <p>
-          <strong>Data de préstec:</strong> {data.data_prestec}
-        </p>
-        <p>
-          <strong>Data de retorn:</strong>{" "}
-          {data.data_retorn ? data.data_retorn : "data no disponible"}
-        </p>
-        <p>
-          <strong>Retornat:</strong> {data.retornat ? "sí" : "no"}
-        </p>
-        <p>
-          <strong>Anotacions:</strong>{" "}
-          {data.anotacions ? data.anotacions : "cap anotació"}
-        </p>
-      </li>
+      <tr className={`${statusClass}`}>
+        <td>
+          <span className="statusText">
+            {statusClass === "noRetornat" ? "En curs" : "Retornat"}
+          </span>
+        </td>
+        <td>{data.titol}</td>
+        <td>{data.exemplar}</td>
+        <td>{data.data_prestec}</td>
+        <td>{data.data_retorn}</td>
+        <td>{data.data_retornat ? data.data_retornat : "---"}</td>
+        <td>{data.retornat ? "sí" : "no"}</td>
+      </tr>
     );
   }
 
