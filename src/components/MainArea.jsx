@@ -7,8 +7,6 @@ import HistoryBorrowsPage from "./HistoryBorrowsPage";
 export default function MainArea() {
   const { stateFromPage, userInfo, checkLogin } = useAppContext();
 
-  console.log("stateFromPage:", stateFromPage);
-
   return (
     <>
       {stateFromPage === "landingPage" && <LandingPage userInfo={userInfo} />}
