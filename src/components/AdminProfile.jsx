@@ -10,6 +10,9 @@ export default function AdminProfile({ userDetails }) {
   const [editedDetails, setEditedDetails] = useState({ ...userDetails });
   const [currentDetails, setCurrentDetails] = useState({ ...userDetails });
 
+  const [statusMessage, setStatusMessage] = useState(null);
+  const [statusType, setStatusType] = useState(null);
+
   const isSuperAdmin = userDetails.is_superuser;
 
   const handleInputChange = (e) => {
@@ -29,14 +32,22 @@ export default function AdminProfile({ userDetails }) {
   const handleSave = async () => {
     const success = await updateUserProfile(editedDetails);
     if (success) {
-      alert("Perfil actualizado correctamente.");
+      setStatusMessage("Dades canviades correctament");
+      setStatusType("success");
       setIsEditing(false);
       const token = localStorage.getItem("token");
       const updatedDetails = await getUserInfo(token);
       setCurrentDetails(updatedDetails);
     } else {
-      alert("Error al actualizar el perfil.");
+      setStatusMessage("S'ha produït algun error");
+      setStatusType("error");
+      setIsEditing(false);
     }
+
+    setTimeout(() => {
+      setStatusMessage(null);
+      setStatusType(null);
+    }, 3000);
   };
 
   const renderPanelContent = () => {
@@ -52,6 +63,8 @@ export default function AdminProfile({ userDetails }) {
             handleEdit={handleEdit}
             handleCancel={handleCancel}
             handleSave={handleSave}
+            statusMessage={statusMessage}
+            statusType={statusType}
           />
         );
     // case "listarUsuarios":
@@ -64,7 +77,7 @@ export default function AdminProfile({ userDetails }) {
       default:
         return (
           <div>
-            <h3>Opción actualmente en desarrollo</h3>
+            <h3>Opció actualment en desenvolupament</h3>
           </div>
         );
     }
@@ -80,12 +93,12 @@ export default function AdminProfile({ userDetails }) {
           >
             Perfil
           </li>
-          <li
+          {/* <li
             className={selectedOption === "listarUsuarios" ? "selected" : ""}
             onClick={() => setSelectedOption("listarUsuarios")}
           >
-            Llistar usuaris
-          </li>
+            Llista d’usuaris
+          </li> */}
           <li
             className={selectedOption === "añadirCsv" ? "selected" : ""}
             onClick={() => setSelectedOption("añadirCsv")}
@@ -97,7 +110,7 @@ export default function AdminProfile({ userDetails }) {
               className={selectedOption === "adminPanel" ? "selected" : ""}
               onClick={() => setSelectedOption("adminPanel")}
             >
-              Admin Panel
+              Panel administratiu
             </li>
           )}
         </ul>

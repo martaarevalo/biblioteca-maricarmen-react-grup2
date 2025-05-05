@@ -9,11 +9,13 @@ export function ProfilePanel({
   handleCancel,
   handleSave,
   className,
+  statusMessage,
+  statusType,
 }) {
   return (
     <div className={className}>
       {isEditing ? (
-        <div className="profile-container">
+        <>
           <div className="profile-content">
             <div className="profile-image-container">
               <img
@@ -25,49 +27,33 @@ export function ProfilePanel({
             <div className="profile-data">
               <div className="profile-row">
                 <div className="profile-field">
-                  <span className="profile-field-label">Nombre de usuario</span>
-                  <input
-                    type="text"
-                    name="username"
-                    value={editedDetails.username}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <span className="profile-field-label">Àlies de l'usurai</span>
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.username}
+                  </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Nombre</span>
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={editedDetails.first_name}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <span className="profile-field-label">Nom</span>
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.first_name}
+                  </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Apellido</span>
-                  <input
-                    type="text"
-                    name="last_name"
-                    value={editedDetails.last_name}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <span className="profile-field-label">Cognom</span>
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.last_name}
+                  </div>
                 </div>
               </div>
               <div className="profile-row">
                 <div className="profile-field">
                   <span className="profile-field-label">Email</span>
-                  <input
-                    type="email"
-                    name="email"
-                    value={editedDetails.email}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.email}
+                  </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Teléfono</span>
+                  <span className="profile-field-label">Telèfon</span>
                   <input
                     type="text"
                     name="telefon"
@@ -79,39 +65,40 @@ export function ProfilePanel({
               </div>
               <div className="profile-row">
                 <div className="profile-field">
-                  <span className="profile-field-label">Centro</span>
-                  <input
-                    type="text"
-                    name="centre"
-                    value={editedDetails.centre || ""}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <span className="profile-field-label">Centre</span>
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.centre || "No especificado"}
+                  </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Ciclo</span>
-                  <input
-                    type="text"
-                    name="cicle"
-                    value={editedDetails.cicle || ""}
-                    onChange={handleInputChange}
-                    className="profile-input"
-                  />
+                  <span className="profile-field-label">Grup</span>
+                  <div className="profile-field-value not-allowed disabled">
+                    {currentDetails.grup || "No especificado"}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="profile-actions">
-            <button className="buttonCancel" onClick={handleCancel}>
-              Cancelar
+
+            <button className="buttonCancel buttonCancel" onClick={handleCancel}>
+              Cancel·lar
             </button>
             <button className="button" onClick={handleSave}>
-              Aceptar
+              Acceptar
+            </button>
+            <button className="button profile-edit-button" onClick={handleEdit}>
+              Editar
             </button>
           </div>
-        </div>
+        </>
       ) : (
-        <div className="profile-container">
+        <>
+          {statusMessage && (
+            <div className={`status-message ${statusType === "success" ? "success" : "error"}`}>
+              {statusMessage}
+            </div>
+          )}
           <div className="profile-content">
             <div className="profile-image-container">
               <img
@@ -126,19 +113,19 @@ export function ProfilePanel({
             <div className="profile-data">
               <div className="profile-row">
                 <div className="profile-field">
-                  <span className="profile-field-label">Nombre de usuario</span>
+                  <span className="profile-field-label">Àlies de l'usuari</span>
                   <div className="profile-field-value">
                     {currentDetails.username}
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Nombre</span>
+                  <span className="profile-field-label">Nom</span>
                   <div className="profile-field-value">
                     {currentDetails.first_name}
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Apellido</span>
+                  <span className="profile-field-label">Cognom</span>
                   <div className="profile-field-value">
                     {currentDetails.last_name}
                   </div>
@@ -152,7 +139,7 @@ export function ProfilePanel({
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Teléfono</span>
+                  <span className="profile-field-label">Telèfon</span>
                   <div className="profile-field-value">
                     {currentDetails.telefon || "No especificado"}
                   </div>
@@ -166,15 +153,15 @@ export function ProfilePanel({
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Ciclo</span>
+                  <span className="profile-field-label">Grup</span>
                   <div className="profile-field-value">
-                    {currentDetails.cicle || "No especificado"}
+                    {currentDetails.grup || "No especificado"}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
