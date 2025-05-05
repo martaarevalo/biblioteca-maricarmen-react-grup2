@@ -69,6 +69,7 @@ export default function HistoryBorrowsPage({ userInfo }) {
             <th>Codi Exempñar</th>
             <th>Data de préstec</th>
             <th>Data de retorn</th>
+            <th>Data retornat</th>
             <th>Retornat</th>
           </tr>
         </thead>

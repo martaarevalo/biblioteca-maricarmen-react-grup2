@@ -22,7 +22,8 @@ export default function Item({ data, onSelect, forPage }) {
         <td>{data.titol}</td>
         <td>{data.exemplar}</td>
         <td>{data.data_prestec}</td>
-        <td>{data.data_retorn ? data.data_retorn : "data no disponible"}</td>
+        <td>{data.data_retorn}</td>
+        <td>{data.data_retornat ? data.data_retornat : "---"}</td>
         <td>{data.retornat ? "sí" : "no"}</td>
       </tr>
     );
