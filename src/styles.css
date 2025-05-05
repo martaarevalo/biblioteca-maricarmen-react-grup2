@@ -1072,7 +1072,74 @@ MARK: Footer
 }
 
 /*****************************************
+
 MARK: Dark Mode
+MARK: History Page
+******************************************/
+
+.history-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-page h1 {
+  text-align: center;
+  color: var(--strongBlue);
+  font-family: var(--titelFont);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.history-table th,
+.history-table td {
+  border: 1px solid var(--lightGrey);
+  padding: 0.8rem;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.history-table th {
+  background-color: var(--lightBlue);
+  color: var(--white);
+  font-weight: bold;
+}
+
+.history-table tr:nth-child(even) {
+  background-color: var(--babyBlue);
+}
+
+.history-table tr:hover {
+  background-color: var(--lightBlue);
+  color: var(--white);
+  transition: background-color 0.3s ease;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--mediumBlue);
+  margin-top: 2rem;
+}
+
+.error {
+  text-align: center;
+  color: #d32f2f;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+/*****************************************
+MARK: Error Page Styles
 ******************************************/
 
 html.dark-mode{
