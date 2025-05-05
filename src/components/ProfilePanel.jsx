@@ -71,9 +71,9 @@ export function ProfilePanel({
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Cicle</span>
+                  <span className="profile-field-label">Grup</span>
                   <div className="profile-field-value not-allowed disabled">
-                    {currentDetails.cicle || "No especificado"}
+                    {currentDetails.grup || "No especificado"}
                   </div>
                 </div>
               </div>
@@ -153,9 +153,9 @@ export function ProfilePanel({
                   </div>
                 </div>
                 <div className="profile-field">
-                  <span className="profile-field-label">Cicle</span>
+                  <span className="profile-field-label">Grup</span>
                   <div className="profile-field-value">
-                    {currentDetails.cicle || "No especificado"}
+                    {currentDetails.grup || "No especificado"}
                   </div>
                 </div>
               </div>
