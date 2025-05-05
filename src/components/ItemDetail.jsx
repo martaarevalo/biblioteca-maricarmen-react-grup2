@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchCatalegDetail } from "../services/api";
+import { useAppContext } from "../context/AppContext";
+import LoanModal from "./LoanModal";
 
 function ItemDetail({ item, onBack }) {
   const [catalegDetail, setCatalegDetail] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedExemplar, setSelectedExemplar] = useState(null);
+
+  const { userInfo } = useAppContext();
+  console.log(userInfo);
 
   useEffect(() => {
     const loadCatalegDetail = async () => {
@@ -14,15 +21,25 @@ function ItemDetail({ item, onBack }) {
     loadCatalegDetail();
   }, [item.id]);
 
-  const handleBorrow = () => {
-    console.log("Pop up de préstec");
-    // lògica per obrir un pop-up de préstec
+  const handleBorrow = (exemplar) => {
+    setSelectedExemplar(exemplar);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedExemplar(null);
+    setShowModal(false);
+  };
+
+  const handleUpdateCataleg = async () => {
+    const data = await fetchCatalegDetail(item.id);
+    setCatalegDetail(data);
   };
 
   return (
     <div className="bookDetail">
       <div className="catalegHeader">
-        <button onClick={onBack}>Tornar</button>
+        <button className="button" onClick={onBack}>Tornar</button>
         <h2 className="h2">{item.titol}</h2>
       </div>
       
@@ -137,9 +154,12 @@ function ItemDetail({ item, onBack }) {
                     <strong>Centre:</strong> {exemplar.centre}
                   </p>
                 )}
-                {!exemplar.exclos_prestec && (
-                  <button onClick={handleBorrow}>Efectuar préstec</button>
-              )}
+
+                {!exemplar.exclos_prestec && 
+                  userInfo?.type === "staff" &&
+                  exemplar.centre === userInfo?.data.centre && (
+                  <button className="button" onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
+                )}
               </li>
             ))}
           </ul>
@@ -148,6 +168,16 @@ function ItemDetail({ item, onBack }) {
         )}
       </section>
       
+      {/* Modal */}
+      {showModal && (
+        <LoanModal 
+          onClose={handleCloseModal}
+          title={catalegDetail.titol}
+          selectedExemplar={selectedExemplar}
+          onSuccess={handleUpdateCataleg}
+        />
+      )}
+
     </div>
   );
 }

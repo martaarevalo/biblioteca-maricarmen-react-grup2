@@ -1,4 +1,5 @@
 import { useAppContext } from "../context/AppContext";
+import DarkModeToggle from "./DarkModeToggle";
 
 export default function Header() {
   const { userInfo, handleState, handleLogOut } = useAppContext();
@@ -7,9 +8,13 @@ export default function Header() {
     <header className="header">
       <h1 className="logo">Biblioteca Maricarmen Brito</h1>
       <nav>
+        <DarkModeToggle />
         <p className="nav-link" onClick={() => handleState("landingPage")}>Menu Principal</p>
         {userInfo ? (
           <>
+            <p className="nav-link" onClick={() => handleState("historyBorrowsPage")}>
+              Historial préstecs
+            </p>
             <p className="nav-link" onClick={() => handleState("profilePage")}>
               Veure perfil
             </p>
