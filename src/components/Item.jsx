@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from "date-fns";
+import { ca } from "date-fns/locale";
 export default function Item({ data, onSelect, forPage }) {
   let content;
 
@@ -21,9 +23,48 @@ export default function Item({ data, onSelect, forPage }) {
         </td>
         <td>{data.titol}</td>
         <td>{data.exemplar}</td>
-        <td>{data.data_prestec}</td>
-        <td>{data.data_retorn}</td>
-        <td>{data.data_retornat ? data.data_retornat : "---"}</td>
+        <td>{data.data_prestec ? (
+            <>
+              {data.data_prestec}
+              <br />
+              <span className="time-ago">
+                {`Préstec fet ${formatDistanceToNow(new Date(data.data_prestec), {
+                  addSuffix: true,
+                  locale: ca,
+                })}`}
+              </span>
+            </>
+          ) : (
+            "---"
+          )}</td>
+        <td>{data.data_retorn ? (
+            <>
+              {data.data_retorn}
+              <br />
+              <span className="time-ago">
+                {`Retorn ${formatDistanceToNow(new Date(data.data_retorn), {
+                  addSuffix: true,
+                  locale: ca,
+                })}`}
+              </span>
+            </>
+          ) : (
+            "---"
+          )}</td>
+        <td>{data.data_prestec ? (
+            <>
+              {data.data_prestec}
+              <br />
+              <span className="time-ago">
+                {`${formatDistanceToNow(new Date(data.data_prestec), {
+                  addSuffix: true,
+                  locale: ca,
+                })}`}
+              </span>
+            </>
+          ) : (
+            "---"
+          )}</td>
         <td>{data.retornat ? "sí" : "no"}</td>
       </tr>
     );
