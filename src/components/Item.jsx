@@ -3,11 +3,19 @@ export default function Item({ data, onSelect, forPage }) {
 
   if (forPage === "cataleg") {
     content = (
+      
       <li className="article articleHover" onClick={() => onSelect(data)}>
+        {console.log(data)}
         <h4 className="h4">{data.titol}</h4>
         <p>
           <strong>Autor:</strong> {data.autor}
         </p>
+        <li className="divPrevExemplar">
+          {data.disponibles > 0 && <ul className="prevExemplar disponibles">{data.disponibles}</ul>}
+          {data.no_disponibles > 0 && <ul className="prevExemplar no-disponibles">{data.no_disponibles}</ul>}
+          {data.excluits > 0 && <ul className="prevExemplar excluits">{data.excluits}</ul>}
+          {data.de_baixa > 0 && <ul className="prevExemplar baixa">{data.de_baixa}</ul>}
+        </li>
       </li>
     );
   } else if (forPage === "borrows") {

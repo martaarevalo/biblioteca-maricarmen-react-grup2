@@ -21,7 +21,7 @@ MARK: Root
   --white: #FFFFFFff;
   --black: #202020;
   --strongGrey: #4b4a4a;
-  --lightGrey: #a3a3a3;
+  --lightGrey: #cac6c6;
 
   /* Colores de estados*/
   --lightRed: #FDECEA;
@@ -687,9 +687,12 @@ MARK: Article
 ******************************************/
 
 .article {
+  position: relative;
+
   padding: 1.5rem;
   background-color: var(--babyBlue);
   color: var(--strongGrey);
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   line-height: 1.6;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
@@ -701,6 +704,53 @@ MARK: Article
   cursor: pointer;
 }
 
+
+/*****************************************
+MARK: ejemplares disponibles previsualización
+******************************************/
+
+.article li.divPrevExemplar {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 10px 0px;
+}
+
+.article li.divPrevExemplar .prevExemplar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0.5rem;
+  border: 1px solid var(--black);
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.article li.divPrevExemplar .prevExemplar.disponibles{
+  background-color: var(--lightGreen);
+  border: 2px solid var(--strongGreen);
+}
+
+.article li.divPrevExemplar .prevExemplar.no-disponibles{
+  background-color: var(--ligthYellow);
+  border: 2px solid var(--strongYellow);
+}
+
+.article li.divPrevExemplar .prevExemplar.excluits{
+  background-color: var(--lightRed);
+  border: 2px solid var(--strongRed);
+}
+
+.article li.divPrevExemplar .prevExemplar.baixa{
+  background-color: var(--lightGrey);
+  border: 2px solid var(--strongGrey);
+}
 
 /*****************************************
 MARK: Paginador
