@@ -14,6 +14,7 @@ function ItemDetail({ item, onBack }) {
   useEffect(() => {
     const loadCatalegDetail = async () => {
       const data = await fetchCatalegDetail(item.id);
+      console.log(item);
       console.log(data);
       setCatalegDetail(data);
     };
@@ -140,33 +141,43 @@ function ItemDetail({ item, onBack }) {
       )}
 
       {/* Detalls dels exemplars */}
-      <h3 className="h3 subclassTitle">Exemplars</h3>
-      <section className="catalegSection">
-        {catalegDetail.exemplars && catalegDetail.exemplars.length > 0 ? (
-          <ul className="catalegDetail.exemplarsList">
-            {catalegDetail.exemplars.map((exemplar) => (
-              <li key={exemplar.id} className="exemplarItem">
-                <p><strong>Registre:</strong> {exemplar.registre}</p>
-                <p><strong>Exclòs Préstec:</strong> {exemplar.exclos_prestec ? 'Sí' : 'No'}</p>
-                <p><strong>Baixa:</strong> {exemplar.baixa ? 'Sí' : 'No'}</p>
-                {exemplar.centre && (
-                  <p>
-                    <strong>Centre:</strong> {exemplar.centre}
-                  </p>
-                )}
-
-                {!exemplar.exclos_prestec && 
-                  userInfo?.type === "staff" &&
-                  exemplar.centre === userInfo?.data.centre && (
-                  <button className="button" onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
-                )}
-              </li>
-            ))}
+      <div id="exemplars">
+        <header className="exemplarsHeader">
+          <h3 className="h3 subclassTitle">Exemplars</h3>
+          <ul className="divDetailCountExemplar">
+            <li className="prevExemplar disponibles">Disponibles: {item.disponibles}</li>
+            <li className="prevExemplar no-disponibles">No disponibles: {item.no_disponibles}</li>
+            <li className="prevExemplar excluits">Excluits: {item.excluits}</li>
+            <li className="prevExemplar baixa">De baixa: {item.de_baixa}</li>
           </ul>
-        ) : (
-          <p>No hi ha exemplars disponibles.</p>
-        )}
-      </section>
+        </header>
+        <section className="catalegSection">
+          {catalegDetail.exemplars && catalegDetail.exemplars.length > 0 ? (
+            <ul className="catalegDetail exemplarsList">
+              {catalegDetail.exemplars.map((exemplar) => (
+                <li key={exemplar.id} className="exemplarItem">
+                  <p><strong>Registre:</strong> {exemplar.registre}</p>
+                  <p><strong>Exclòs Préstec:</strong> {exemplar.exclos_prestec ? 'Sí' : 'No'}</p>
+                  <p><strong>Baixa:</strong> {exemplar.baixa ? 'Sí' : 'No'}</p>
+                  {exemplar.centre && (
+                    <p>
+                      <strong>Centre:</strong> {exemplar.centre}
+                    </p>
+                  )}
+
+                  {!exemplar.exclos_prestec && 
+                    userInfo?.type === "staff" &&
+                    exemplar.centre === userInfo?.data.centre && (
+                    <button className="button" onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No hi ha exemplars disponibles.</p>
+          )}
+        </section>
+      </div>
       
       {/* Modal */}
       {showModal && (

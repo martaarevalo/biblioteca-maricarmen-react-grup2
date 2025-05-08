@@ -411,23 +411,39 @@ MARK: Catalog Item
   margin-bottom: 20px;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li:not(:last-child) {
+.bookDetail ul.catalegDetail.exemplarsList li:not(:last-child) {
   border-bottom: 1px solid var(--lightBlue);
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   position: relative;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li {
+.bookDetail ul.catalegDetail.exemplarsList li {
   position: relative;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li button {
+.bookDetail ul.catalegDetail.exemplarsList li button {
   position: absolute;
   right: 0.5rem;
   bottom: calc(50% - 10px);
 }
 
+.bookDetail ul.divDetailCountExemplar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+}
+
+.bookDetail ul.divDetailCountExemplar li{
+  margin: 1rem 0rem;
+  padding: 0.5rem;
+  border: 1px solid var(--black);
+  width: 90%;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
 
 /*****************************************
 MARK: Loan Modal
@@ -709,7 +725,7 @@ MARK: Article
 MARK: ejemplares disponibles previsualización
 ******************************************/
 
-.article li.divPrevExemplar {
+.article ul.divPrevExemplar {
   position: absolute;
   bottom: 0;
   right: 20px;
@@ -720,7 +736,7 @@ MARK: ejemplares disponibles previsualización
   margin: 10px 0px;
 }
 
-.article li.divPrevExemplar .prevExemplar{
+.article ul.divPrevExemplar .prevExemplar{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -732,22 +748,26 @@ MARK: ejemplares disponibles previsualización
   border-radius: 10px;
 }
 
-.article li.divPrevExemplar .prevExemplar.disponibles{
+.article ul.divPrevExemplar .prevExemplar.disponibles,
+.bookDetail ul.divDetailCountExemplar li.disponibles{
   background-color: var(--lightGreen);
   border: 2px solid var(--strongGreen);
 }
 
-.article li.divPrevExemplar .prevExemplar.no-disponibles{
+.article ul.divPrevExemplar .prevExemplar.no-disponibles,
+.bookDetail ul.divDetailCountExemplar li.no-disponibles{
   background-color: var(--ligthYellow);
   border: 2px solid var(--strongYellow);
 }
 
-.article li.divPrevExemplar .prevExemplar.excluits{
+.article ul.divPrevExemplar .prevExemplar.excluits,
+.bookDetail ul.divDetailCountExemplar li.excluits{
   background-color: var(--lightRed);
   border: 2px solid var(--strongRed);
 }
 
-.article li.divPrevExemplar .prevExemplar.baixa{
+.article ul.divPrevExemplar .prevExemplar.baixa,
+.bookDetail ul.divDetailCountExemplar li.baixa{
   background-color: var(--lightGrey);
   border: 2px solid var(--strongGrey);
 }

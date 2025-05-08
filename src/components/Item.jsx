@@ -10,12 +10,12 @@ export default function Item({ data, onSelect, forPage }) {
         <p>
           <strong>Autor:</strong> {data.autor}
         </p>
-        <li className="divPrevExemplar">
-          {data.disponibles > 0 && <ul className="prevExemplar disponibles">{data.disponibles}</ul>}
-          {data.no_disponibles > 0 && <ul className="prevExemplar no-disponibles">{data.no_disponibles}</ul>}
-          {data.excluits > 0 && <ul className="prevExemplar excluits">{data.excluits}</ul>}
-          {data.de_baixa > 0 && <ul className="prevExemplar baixa">{data.de_baixa}</ul>}
-        </li>
+        <ul className="divPrevExemplar">
+          {data.disponibles > 0 && <li className="prevExemplar disponibles">{data.disponibles}</li>}
+          {data.no_disponibles > 0 && <li className="prevExemplar no-disponibles">{data.no_disponibles}</li>}
+          {data.excluits > 0 && <li className="prevExemplar excluits">{data.excluits}</li>}
+          {data.de_baixa > 0 && <li className="prevExemplar baixa">{data.de_baixa}</li>}
+        </ul>
       </li>
     );
   } else if (forPage === "borrows") {
