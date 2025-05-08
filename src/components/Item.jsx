@@ -59,12 +59,12 @@ export default function Item({ data, onSelect, forPage }) {
           ) : (
             "---"
           )}</td>
-        <td>{data.data_prestec ? (
+        <td>{data.data_retornat ? (
             <>
-              {data.data_prestec}
+              {data.data_retornat}
               <br />
               <span className="time-ago">
-                {`${formatDistanceToNow(new Date(data.data_prestec), {
+                {`${formatDistanceToNow(new Date(data.data_retornat), {
                   addSuffix: true,
                   locale: ca,
                 })}`}
