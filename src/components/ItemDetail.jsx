@@ -169,9 +169,10 @@ function ItemDetail({ item, onBack }) {
               <table className="catalegDetail exemplarsList">
                 <thead>
                   <tr>
+                    <th>Estat</th>
                     <th>Registre</th>
                     <th>Exclòs Préstec</th>
-                    <th>Baixa</th>
+                    <th>Està prestat actualment</th>
                     <th>Centre</th>
                     {userInfo?.type === "staff" && <th>Efectuar préstec</th>}
                   </tr>
@@ -179,13 +180,24 @@ function ItemDetail({ item, onBack }) {
                 <tbody>
                   {currentExemplars.map((exemplar) => (
                     <tr key={exemplar.id}>
+                      <td>
+                        <span className={
+                          (!exemplar.en_prestec && !exemplar.exclos_prestec)
+                            ? "status disponible"
+                            : "status no-disponible"
+                        }>
+                          {(!exemplar.en_prestec && !exemplar.exclos_prestec)
+                            ? "disponible"
+                            : "no disponible"}
+                        </span>
+                    </td>
                       <td>{exemplar.registre}</td>
                       <td>{exemplar.exclos_prestec ? 'Sí' : 'No'}</td>
-                      <td>{exemplar.baixa ? 'Sí' : 'No'}</td>
+                      <td>{exemplar.en_prestec ? 'Sí' : 'No'}</td>
                       <td>{exemplar.centre || '-'}</td>
                       {userInfo?.type === "staff" && (
                         <td className="centeredCell">
-                          {!exemplar.exclos_prestec && exemplar.centre === userInfo?.data.centre ? (
+                          {!exemplar.en_prestec && !exemplar.exclos_prestec && exemplar.centre === userInfo?.data.centre ? (
                             <button className="button" onClick={() => handleBorrow(exemplar)}>
                               Efectuar préstec
                             </button>

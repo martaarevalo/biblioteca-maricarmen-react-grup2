@@ -439,6 +439,15 @@ MARK: Catalog Item
   cursor: pointer;
 }
 
+.catalegDetail span.status{
+  display: inline-block;
+  padding: 0.5rem 0.7rem;
+  border: 2px solid var(--strongGrey);
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .exemplarsList {
   margin-top: 1rem;
 }
@@ -768,13 +777,15 @@ MARK: ejemplares disponibles previsualización
 }
 
 .article ul.divPrevExemplar .prevExemplar.disponibles,
-.bookDetail ul.divDetailCountExemplar li.disponibles{
+.bookDetail ul.divDetailCountExemplar li.disponibles,
+.catalegDetail span.status.disponible{
   background-color: var(--lightGreen);
   border: 2px solid var(--strongGreen);
 }
 
 .article ul.divPrevExemplar .prevExemplar.no-disponibles,
-.bookDetail ul.divDetailCountExemplar li.no-disponibles{
+.bookDetail ul.divDetailCountExemplar li.no-disponibles,
+.catalegDetail span.status.no-disponible{
   background-color: var(--ligthYellow);
   border: 2px solid var(--strongYellow);
 }
