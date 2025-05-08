@@ -27,41 +27,35 @@ export default function SearchByCatalog({ onExemplarSelect }) {
     const totalPages = Math.ceil(results.length / resultsPerPage);
 
     return (
-        <div>
+        <div className="searchByCatalog">
             {/* Menú de búsqueda */}
-            <div className="search-menu" style={{ marginBottom: "1rem" }}>
+            <div className="search-container">
                 <input
                     type="text"
                     placeholder="Buscar..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    style={{ marginRight: "0.5rem", padding: "0.5rem" }}
                 />
-                <button onClick={handleSearch} style={{ padding: "0.5rem 1rem" }}>Buscar</button>
+                <button className="button" onClick={handleSearch}>Cercar</button>
             </div>
 
             {/* Tarjetas de resultados */}
-            <div className="cards-container" style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            <ul className="articleUl result-list">
                 {currentResults.map((item) => (
-                    <div
-                        key={item.id}
-                        className="card"
-                        onClick={() => handleCardClick(item)}
-                        style={{ border: "1px solid #ccc", padding: "1rem", width: "200px", cursor: "pointer" }}
-                    >
+                    <li key={item.id} onClick={() => handleCardClick(item)}>
                         <h4>{item.titol}</h4>
                         {item.autor && <p>Autor: {item.autor}</p>}
                         <p>Disponibles: {item.disponibles}</p>
                         <p>No disponibles: {item.no_disponibles}</p>
                         <p>Excluits: {item.excluits}</p>
                         <p>De préstec: {item.de_prestec}</p>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
 
             {/* Paginador */}
             {results.length > 0 && (
-                <div className="pagination" style={{ marginTop: "1rem", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div>
                     <button onClick={() => setPage(page - 1)} disabled={page === 1}>
                         Anterior
                     </button>

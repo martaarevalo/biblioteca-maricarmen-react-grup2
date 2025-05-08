@@ -34,7 +34,6 @@ export default function ModalExemplarsList({
   );
 
   const toggleSelection = (exemplar) => {
-    // Se construye el objeto con la estructura requerida.
     const exemplarToAdd = {
       titol: catalogDetail.titol,
       registre: exemplar.registre,
@@ -46,12 +45,10 @@ export default function ModalExemplarsList({
       (sel) => sel.registre === exemplarToAdd.registre
     );
     if (exists) {
-      // Si ya está seleccionado, se elimina.
       setLocalSelectedExemplars((prev) =>
         prev.filter((sel) => sel.registre !== exemplarToAdd.registre)
       );
     } else {
-      // Si no está, se añade.
       setLocalSelectedExemplars((prev) => [...prev, exemplarToAdd]);
     }
   };
@@ -66,60 +63,54 @@ export default function ModalExemplarsList({
   };
 
   return (
-    <div>
-      <button onClick={onClose}>Cerrar</button>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Registre</th>
-            <th>Exclos Prestec</th>
-            <th>En Prestec</th>
-            <th>Centre</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentExemplars.map((exemplar) => {
-            const isSelected = localSelectedExemplars.some(
-              (sel) => sel.registre === exemplar.registre
-            );
-            return (
-              <tr
-                key={exemplar.id}
-                onClick={() => toggleSelection(exemplar)}
-                className={isSelected ? "selected" : ""}
-                style={{ cursor: "pointer" }}
-              >
-                <td>{exemplar.id}</td>
-                <td>{exemplar.registre}</td>
-                <td>{exemplar.exclos_prestec ? "Sí" : "No"}</td>
-                <td>{exemplar.en_prestec ? "Sí" : "No"}</td>
-                <td>{exemplar.centre}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div>
-        <button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Siguiente
-        </button>
-      </div>
-      <div>
-        <button onClick={handleAccept}>Aceptar</button>
-        <button onClick={onClose}>Cancelar</button>
+    <div className="loan-modal modal-custom">
+      <div className="modalContent">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Registre</th>
+              <th>Exclos Prestec</th>
+              <th>En Prestec</th>
+              <th>Centre</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentExemplars.map((exemplar) => {
+              const isSelected = localSelectedExemplars.some(
+                (sel) => sel.registre === exemplar.registre
+              );
+              return (
+                <tr
+                  key={exemplar.id}
+                  onClick={() => toggleSelection(exemplar)}
+                  className={isSelected ? "selected" : ""}
+                >
+                  <td>{exemplar.id}</td>
+                  <td>{exemplar.registre}</td>
+                  <td>{exemplar.exclos_prestec ? "Sí" : "No"}</td>
+                  <td>{exemplar.en_prestec ? "Sí" : "No"}</td>
+                  <td>{exemplar.centre}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div className="pagination">
+          <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+            Anterior
+          </button>
+          <span>
+            Página {currentPage} de {totalPages}
+          </span>
+          <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
+            Siguiente
+          </button>
+        </div>
+        <div>
+          <button onClick={handleAccept}>Aceptar</button>
+          <button onClick={onClose}>Cancelar</button>
+        </div>
       </div>
     </div>
   );

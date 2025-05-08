@@ -27,40 +27,41 @@ export default function SearchByRegister({ onExemplarSelect }) {
   };
 
   return (
-    <div>
+    <div className="searchByRegister">
       <h2>Buscar exemplars per registre</h2>
       <form onSubmit={handleSearch}>
-        <div>
-          <label htmlFor="valor1">Valor 1:</label>
-          <input
-            type="number"
-            id="valor1"
-            value={valor1}
-            onChange={(e) => setValor1(e.target.value)}
-            placeholder="Ingrese el primer número"
-          />
+        <div className="search-container">
+          <div>
+            <label htmlFor="valor1">Valor 1:</label>
+            <input
+              type="number"
+              id="valor1"
+              value={valor1}
+              onChange={(e) => setValor1(e.target.value)}
+              placeholder="Ingrese el primer número"
+            />
+          </div>
+          <div>
+            <label htmlFor="valor2">Valor 2:</label>
+            <input
+              type="number"
+              id="valor2"
+              value={valor2}
+              onChange={(e) => setValor2(e.target.value)}
+              placeholder="Ingrese el segundo número"
+            />
+          </div>
+          <button className="button" type="submit">Cercar</button>
         </div>
-        <div>
-          <label htmlFor="valor2">Valor 2:</label>
-          <input
-            type="number"
-            id="valor2"
-            value={valor2}
-            onChange={(e) => setValor2(e.target.value)}
-            placeholder="Ingrese el segundo número"
-          />
-        </div>
-        <button type="submit">Cercar</button>
       </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p>{error}</p>}
       <div>
         {results.length > 0 ? (
-          <ul>
+          <ul className="articleUl">
             {results.map((exemplar, index) => (
               <li
                 key={index}
                 onClick={() => onExemplarSelect(exemplar)}
-                style={{ cursor: "pointer" }}
               >
                 <h3>{exemplar.titol}</h3>
                 <p>

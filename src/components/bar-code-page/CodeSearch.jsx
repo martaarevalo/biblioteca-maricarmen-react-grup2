@@ -7,11 +7,17 @@ export default function CodeSearch({ onExemplarSelect }) {
 
   return (
     <div>
-      <div>
-        <button onClick={() => setActiveTab("catalog")}>
+      <div className="code-search-tabs">
+        <button
+          className={activeTab === "catalog" ? "active" : ""}
+          onClick={() => setActiveTab("catalog")}
+        >
           buscar per catalog
         </button>
-        <button onClick={() => setActiveTab("exemplar")}>
+        <button
+          className={activeTab === "exemplar" ? "active" : ""}
+          onClick={() => setActiveTab("exemplar")}
+        >
           buscar per codi de exemplar
         </button>
       </div>

@@ -10,9 +10,11 @@ export default function MainBarCode() {
   };
 
   return (
-    <>
+    <div className="mainBarCodeContainer">
       <AsideListCode exemplarsList={selectedExemplars} />
-      <CodeSearch onExemplarSelect={handleAddExemplar} />
-    </>
+      <div className="codeSearchArea">
+        <CodeSearch onExemplarSelect={handleAddExemplar} />
+      </div>
+    </div>
   );
 }
