@@ -411,21 +411,40 @@ MARK: Catalog Item
   margin-bottom: 20px;
 }
 
-.bookDetail ul.catalegDetail.exemplarsList li:not(:last-child) {
-  border-bottom: 1px solid var(--lightBlue);
-  padding-bottom: 1rem;
+.catalegDetail {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 1rem;
-  position: relative;
 }
 
-.bookDetail ul.catalegDetail.exemplarsList li {
-  position: relative;
+.catalegDetail th,
+.catalegDetail td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--lightBlue);
+  text-align: left;
 }
 
-.bookDetail ul.catalegDetail.exemplarsList li button {
-  position: absolute;
-  right: 0.5rem;
-  bottom: calc(50% - 10px);
+.catalegDetail th {
+  background-color: var(--strongBlue);
+  color: var(--white);
+  font-weight: bold;
+}
+
+.catalegDetail tr:nth-child(even) {
+  background-color: var(--babyBlue);
+}
+
+.catalegDetail tr:hover {
+  background-color: var(--lightBlue);
+  cursor: pointer;
+}
+
+.exemplarsList {
+  margin-top: 1rem;
+}
+
+.centeredCell {
+  text-align: center !important;
 }
 
 .bookDetail ul.divDetailCountExemplar {
@@ -438,7 +457,7 @@ MARK: Catalog Item
   margin: 1rem 0rem;
   padding: 0.5rem;
   border: 1px solid var(--black);
-  width: 90%;
+  width: 95%;
   height: 30px;
   border-radius: 10px;
   display: flex;
