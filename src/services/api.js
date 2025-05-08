@@ -1,5 +1,5 @@
-// const API_URL = "http://localhost:8000/api";
-const API_URL = "https://biblioteca2.ieti.site/api";
+const API_URL = "http://localhost:8000/api";
+// const API_URL = "https://biblioteca2.ieti.site/api";
 
 export const checkUser = async (userName, userPassword) => {
   const credentials = btoa(`${userName}:${userPassword}`);
@@ -170,6 +170,21 @@ export const fetchUserBorrows = async (userId) => {
     return await response.json();
   } catch (error) {
     console.error("Error a la API:", error);
+    return [];
+  }
+};
+
+// Buscar ejemplares por rango
+export const fetchExemplarsRange = async (valor1, valor2) => {
+  try {
+    const response = await fetch(`${API_URL}/exemplars/${valor1}/${valor2}`);
+    if (!response.ok) {
+      throw new Error("Error al obtener ejemplares en el rango");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error en fetchExemplarsRange:", error);
     return [];
   }
 };

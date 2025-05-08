@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import Login from "./Login";
 import ProfilePage from "./ProfilePage";
 import HistoryBorrowsPage from "./HistoryBorrowsPage";
+import MainBarCode from "./bar-code-page/MainBarCode";
 
 export default function MainArea() {
   const { stateFromPage, userInfo, checkLogin } = useAppContext();
@@ -15,6 +16,7 @@ export default function MainArea() {
       {stateFromPage === "loginPage" && <Login checkLogin={checkLogin} />}
       {stateFromPage === "profilePage" && <ProfilePage userInfo={userInfo} />}
       {stateFromPage === "historyBorrowsPage" && <HistoryBorrowsPage userInfo={userInfo} />}
+      {stateFromPage === "printBarCodePage" && <MainBarCode/>}
     </>
   );
 }

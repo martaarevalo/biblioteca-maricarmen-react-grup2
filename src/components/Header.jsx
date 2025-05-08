@@ -12,6 +12,11 @@ export default function Header() {
         <p className="nav-link" onClick={() => handleState("landingPage")}>Menu Principal</p>
         {userInfo ? (
           <>
+            {userInfo.type === "staff" && (
+              <p className="nav-link" onClick={() => handleState("printBarCodePage")}>
+                Imprimir Codi de Barres
+              </p>
+            )}
             <p className="nav-link" onClick={() => handleState("historyBorrowsPage")}>
               Historial préstecs
             </p>
