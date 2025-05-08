@@ -19,12 +19,12 @@ export default function Header() {
               Veure perfil
             </p>
             <p className="nav-link" onClick={handleLogOut}>
-              LogOut
+              Tancar sessió de {userInfo.data.first_name}
             </p>
           </>
         ) : (
           <p className="nav-link" onClick={() => handleState("loginPage")}>
-            Login
+            Iniciar sessió
           </p>
         )}
       </nav>

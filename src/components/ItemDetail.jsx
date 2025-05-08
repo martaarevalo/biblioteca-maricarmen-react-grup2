@@ -7,6 +7,8 @@ function ItemDetail({ item, onBack }) {
   const [catalegDetail, setCatalegDetail] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [selectedExemplar, setSelectedExemplar] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
 
   const { userInfo } = useAppContext();
   console.log(userInfo);
@@ -14,8 +16,11 @@ function ItemDetail({ item, onBack }) {
   useEffect(() => {
     const loadCatalegDetail = async () => {
       const data = await fetchCatalegDetail(item.id);
+      console.log(item);
       console.log(data);
       setCatalegDetail(data);
+      // Reiniciar la página en cada carga
+      setCurrentPage(1);
     };
 
     loadCatalegDetail();
@@ -35,6 +40,14 @@ function ItemDetail({ item, onBack }) {
     const data = await fetchCatalegDetail(item.id);
     setCatalegDetail(data);
   };
+
+  // Computar el total de páginas y los exemplars a mostrar en la página actual
+  const totalExemplars = catalegDetail.exemplars ? catalegDetail.exemplars.length : 0;
+  const totalPages = Math.ceil(totalExemplars / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const currentExemplars = catalegDetail.exemplars
+    ? catalegDetail.exemplars.slice(startIndex, startIndex + rowsPerPage)
+    : [];
 
   return (
     <div className="bookDetail">
@@ -140,33 +153,94 @@ function ItemDetail({ item, onBack }) {
       )}
 
       {/* Detalls dels exemplars */}
-      <h3 className="h3 subclassTitle">Exemplars</h3>
-      <section className="catalegSection">
-        {catalegDetail.exemplars && catalegDetail.exemplars.length > 0 ? (
-          <ul className="catalegDetail.exemplarsList">
-            {catalegDetail.exemplars.map((exemplar) => (
-              <li key={exemplar.id} className="exemplarItem">
-                <p><strong>Registre:</strong> {exemplar.registre}</p>
-                <p><strong>Exclòs Préstec:</strong> {exemplar.exclos_prestec ? 'Sí' : 'No'}</p>
-                <p><strong>Baixa:</strong> {exemplar.baixa ? 'Sí' : 'No'}</p>
-                {exemplar.centre && (
-                  <p>
-                    <strong>Centre:</strong> {exemplar.centre}
-                  </p>
-                )}
-
-                {!exemplar.exclos_prestec && 
-                  userInfo?.type === "staff" &&
-                  exemplar.centre === userInfo?.data.centre && (
-                  <button className="button" onClick={() => handleBorrow(exemplar)}>Efectuar préstec</button>
-                )}
-              </li>
-            ))}
+      <div id="exemplars">
+        <header className="exemplarsHeader">
+          <h3 className="h3 subclassTitle">Exemplars</h3>
+          <ul className="divDetailCountExemplar">
+            <li className="prevExemplar disponibles">Disponibles: {item.disponibles}</li>
+            <li className="prevExemplar no-disponibles">No disponibles: {item.no_disponibles}</li>
+            <li className="prevExemplar excluits">Excluits: {item.excluits}</li>
+            <li className="prevExemplar baixa">De baixa: {item.de_baixa}</li>
           </ul>
-        ) : (
-          <p>No hi ha exemplars disponibles.</p>
-        )}
-      </section>
+        </header>
+        <section className="catalegSection">
+          {totalExemplars > 0 ? (
+            <>
+              <table className="catalegDetail exemplarsList">
+                <thead>
+                  <tr>
+                    <th>Estat</th>
+                    <th>Registre</th>
+                    <th>Exclòs Préstec</th>
+                    <th>Està prestat actualment</th>
+                    <th>Centre</th>
+                    {userInfo?.type === "staff" && <th>Efectuar préstec</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentExemplars.map((exemplar) => (
+                    <tr key={exemplar.id}>
+                      <td>
+                        <span className={
+                          (!exemplar.en_prestec && !exemplar.exclos_prestec)
+                            ? "status disponible"
+                            : "status no-disponible"
+                        }>
+                          {(!exemplar.en_prestec && !exemplar.exclos_prestec)
+                            ? "disponible"
+                            : "no disponible"}
+                        </span>
+                    </td>
+                      <td>{exemplar.registre}</td>
+                      <td>{exemplar.exclos_prestec ? 'Sí' : 'No'}</td>
+                      <td>{exemplar.en_prestec ? 'Sí' : 'No'}</td>
+                      <td>{exemplar.centre || '-'}</td>
+                      {userInfo?.type === "staff" && (
+                        <td className="centeredCell">
+                          {!exemplar.en_prestec && !exemplar.exclos_prestec && exemplar.centre === userInfo?.data.centre ? (
+                            <button className="button" onClick={() => handleBorrow(exemplar)}>
+                              Efectuar préstec
+                            </button>
+                          ) : (
+                            'Préstec no disponible'
+                          )}
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="pagination">
+                <button
+                  className="button"
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                >
+                  Anterior
+                </button>
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index}
+                    className={`button ${currentPage === index + 1 ? "active" : ""}`}
+                    onClick={() => setCurrentPage(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+                <button
+                  className="button"
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  Siguiente
+                </button>
+              </div>
+            </>
+          ) : (
+            <p>No hi ha exemplars disponibles.</p>
+          )}
+        </section>
+      </div>
       
       {/* Modal */}
       {showModal && (

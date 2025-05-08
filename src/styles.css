@@ -21,7 +21,7 @@ MARK: Root
   --white: #FFFFFFff;
   --black: #202020;
   --strongGrey: #4b4a4a;
-  --lightGrey: #a3a3a3;
+  --lightGrey: #cac6c6;
 
   /* Colores de estados*/
   --lightRed: #FDECEA;
@@ -411,23 +411,67 @@ MARK: Catalog Item
   margin-bottom: 20px;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li:not(:last-child) {
-  border-bottom: 1px solid var(--lightBlue);
-  padding-bottom: 1rem;
+.catalegDetail {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 1rem;
-  position: relative;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li {
-  position: relative;
+.catalegDetail th,
+.catalegDetail td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--lightBlue);
+  text-align: left;
 }
 
-.bookDetail ul.catalegDetail\.exemplarsList li button {
-  position: absolute;
-  right: 0.5rem;
-  bottom: calc(50% - 10px);
+.catalegDetail th {
+  background-color: var(--strongBlue);
+  color: var(--white);
+  font-weight: bold;
 }
 
+.catalegDetail tr:nth-child(even) {
+  background-color: var(--babyBlue);
+}
+
+.catalegDetail tr:hover {
+  background-color: var(--lightBlue);
+  cursor: pointer;
+}
+
+.catalegDetail span.status{
+  display: inline-block;
+  padding: 0.5rem 0.7rem;
+  border: 2px solid var(--strongGrey);
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.exemplarsList {
+  margin-top: 1rem;
+}
+
+.centeredCell {
+  text-align: center !important;
+}
+
+.bookDetail ul.divDetailCountExemplar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+}
+
+.bookDetail ul.divDetailCountExemplar li{
+  margin: 1rem 0rem;
+  padding: 0.5rem;
+  border: 1px solid var(--black);
+  width: 95%;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
 
 /*****************************************
 MARK: Loan Modal
@@ -687,9 +731,12 @@ MARK: Article
 ******************************************/
 
 .article {
+  position: relative;
+
   padding: 1.5rem;
   background-color: var(--babyBlue);
   color: var(--strongGrey);
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   line-height: 1.6;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
@@ -701,6 +748,59 @@ MARK: Article
   cursor: pointer;
 }
 
+
+/*****************************************
+MARK: ejemplares disponibles previsualización
+******************************************/
+
+.article ul.divPrevExemplar {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 10px 0px;
+}
+
+.article ul.divPrevExemplar .prevExemplar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0.5rem;
+  border: 1px solid var(--black);
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.article ul.divPrevExemplar .prevExemplar.disponibles,
+.bookDetail ul.divDetailCountExemplar li.disponibles,
+.catalegDetail span.status.disponible{
+  background-color: var(--lightGreen);
+  border: 2px solid var(--strongGreen);
+}
+
+.article ul.divPrevExemplar .prevExemplar.no-disponibles,
+.bookDetail ul.divDetailCountExemplar li.no-disponibles,
+.catalegDetail span.status.no-disponible{
+  background-color: var(--ligthYellow);
+  border: 2px solid var(--strongYellow);
+}
+
+.article ul.divPrevExemplar .prevExemplar.excluits,
+.bookDetail ul.divDetailCountExemplar li.excluits{
+  background-color: var(--lightRed);
+  border: 2px solid var(--strongRed);
+}
+
+.article ul.divPrevExemplar .prevExemplar.baixa,
+.bookDetail ul.divDetailCountExemplar li.baixa{
+  background-color: var(--lightGrey);
+  border: 2px solid var(--strongGrey);
+}
 
 /*****************************************
 MARK: Paginador
