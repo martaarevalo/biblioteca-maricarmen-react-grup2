@@ -11,7 +11,11 @@ export default function MainBarCode() {
 
   return (
     <div className="mainBarCodeContainer">
-      <AsideListCode exemplarsList={selectedExemplars} />
+      {/* Pasar setSelectedExemplars como prop */}
+      <AsideListCode 
+        exemplarsList={selectedExemplars} 
+        setExemplarsList={setSelectedExemplars} 
+      />
       <div className="codeSearchArea">
         <CodeSearch onExemplarSelect={handleAddExemplar} />
       </div>

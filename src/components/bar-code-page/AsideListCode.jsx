@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { handlePrint } from "../../services/api";
 
-export default function AsideListCode({ exemplarsList }) {
+export default function AsideListCode({ exemplarsList, setExemplarsList }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const totalItems = exemplarsList.length;
@@ -17,7 +17,11 @@ export default function AsideListCode({ exemplarsList }) {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
-  // Función para ejecutar handlePrint con el centro correspondiente
+  const handleRemove = (indexToRemove) => {
+    const updatedList = exemplarsList.filter((_, index) => index !== indexToRemove);
+    setExemplarsList(updatedList);
+  };
+
   const imprimirPDF = () => {
     const centre = exemplarsList.length > 0 ? exemplarsList[0].centre : "Biblioteca";
     handlePrint(centre, exemplarsList);
@@ -41,6 +45,12 @@ export default function AsideListCode({ exemplarsList }) {
             <p>
               <strong>CDU:</strong> {exemplar.CDU}
             </p>
+            <button
+              className="button remove-button"
+              onClick={() => handleRemove(startIndex + index)}
+            >
+              Eliminar
+            </button>
           </li>
         ))}
       </ul>
