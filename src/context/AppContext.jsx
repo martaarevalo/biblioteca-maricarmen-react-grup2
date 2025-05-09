@@ -38,6 +38,22 @@ export function AppProvider({ children }) {
     }
   }
 
+  async function checkLoginWithToken(token) {
+    const info = await getUserInfo(token);
+    if (info) {
+      const typeOfUser = info?.is_superuser
+        ? "superadmin"
+        : info?.is_staff
+        ? "staff"
+        : "normal";
+      setUserInfo({ type: typeOfUser, data: info });
+      setStateFromPage("landingPage");
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function handleLogOut() {
     const token = localStorage.getItem("token");
         
@@ -57,6 +73,7 @@ export function AppProvider({ children }) {
     userInfo,
     handleState,
     checkLogin,
+    checkLoginWithToken,
     handleLogOut,
   };  
 
