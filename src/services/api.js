@@ -1,8 +1,7 @@
 import jsPDF from "jspdf";
 import bwipjs from "bwip-js";
 
-const API_URL = "http://localhost:8000/api";
-// const API_URL = "https://biblioteca2.ieti.site/api";
+const API_URL = import.meta.env.VITE_WEB_URL_API;
 
 export const checkUser = async (userName, userPassword) => {
   const credentials = btoa(`${userName}:${userPassword}`);

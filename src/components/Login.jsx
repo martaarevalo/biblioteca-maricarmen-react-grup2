@@ -10,7 +10,7 @@ export default function Login() {
     const googleLoginButton = document.getElementById("google-login-button");
     if (googleLoginButton) {
         window.google.accounts.id.initialize({
-            client_id: "241608202718-dk97lod0vvpqg7pn4f50prsce3osqj1s.apps.googleusercontent.com",
+            client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
             callback: handleGoogleLogin,
         });
         window.google.accounts.id.renderButton(googleLoginButton, {
@@ -23,7 +23,7 @@ export default function Login() {
   const handleGoogleLogin = async (response) => {
     const token = response.credential;
 
-    const res = await fetch("http://127.0.0.1:8000/api/social-login/", {
+    const res = await fetch(`${import.meta.env.VITE_WEB_URL_API}/social-login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
