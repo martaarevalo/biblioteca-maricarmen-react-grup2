@@ -115,7 +115,7 @@ export default function AdminProfile({ userDetails }) {
           )}
         </ul>
       </aside>
-      <main className="adminMain">{renderPanelContent()}</main>
+        {renderPanelContent()}
     </div>
   );
 }

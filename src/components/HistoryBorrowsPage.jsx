@@ -80,7 +80,7 @@ export default function HistoryBorrowsPage({ userInfo }) {
             ))
           ) : (
             <tr>
-              <td colSpan="6">No hi ha préstecs per mostrar.</td>
+              <td colSpan="7">No hi ha préstecs per mostrar.</td>
             </tr>
           )}
         </tbody>

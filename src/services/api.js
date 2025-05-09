@@ -288,5 +288,23 @@ export const handlePrint = async (centreName, exemplarToPrint) => {
   // setIsModalOpen(false);
 
 // }, 5000);
+};
 
+export const socialLogin = async (provider, token) => {
+  try {
+    const response = await fetch(`${API_URL}/social-login/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ provider, token }),
+    });
+    if (!response.ok) throw new Error("Error en login social");
+    const data = await response.json();
+    localStorage.setItem("token", data.token);
+    return data.user;
+  } catch (error) {
+    console.error("Error en login social:", error);
+    return null;
+  }
 };

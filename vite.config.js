@@ -8,4 +8,13 @@ export default defineConfig({
     outDir: 'dist', // Carpeta de salida (puedes cambiarla a 'build' si lo prefieres)
     assetsDir: 'static', // Cambia 'assets' por 'static'
   },
+  server: {
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+    },
+    proxy: {
+      "/api": "http://localhost:8000",
+    },
+  },
 });

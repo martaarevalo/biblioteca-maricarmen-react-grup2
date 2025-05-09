@@ -135,7 +135,7 @@ MARK: button
 
 
 /*****************************************
-MARK: Layout del Login
+MARK: Login
 ******************************************/
 .centerDiv {
   display: flex;
@@ -216,6 +216,11 @@ MARK: Layout del Login
 
 .error-visible {
   display: block !important;
+}
+
+#google-login-button{
+  margin-top: 1rem;
+  width: 100%;
 }
 
 /*****************************************
@@ -943,6 +948,12 @@ MARK: Profile
   overflow-y: auto; /* Permite scroll si el contenido es muy grande */
 }
 
+.profile-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /*****************************************
 MARK: Admin Profile - Form
 ******************************************/
@@ -1111,7 +1122,7 @@ MARK: Historial de préstamos
 MARK: Import CSV panel
 ******************************************/
 
-.upload-container {
+.adminProfile div.upload-container {
   border: 2px solid var(--mediumBlue);
   display: flex;
   align-items: center;
@@ -1119,6 +1130,11 @@ MARK: Import CSV panel
   padding: 10px;
   border-radius: 5px;
   margin: 2rem auto;
+  width: 95%;
+}
+
+.adminProfile div {
+  width: 100%;
 }
 
 .file-name {
@@ -1194,8 +1210,6 @@ MARK: Footer
 }
 
 /*****************************************
-
-MARK: Dark Mode
 MARK: History Page
 ******************************************/
 
@@ -1454,7 +1468,7 @@ MARK: Time Ago Styles
 }
 
 /*****************************************
-MARK: Error Page Styles
+MARK: Dark Styles
 ******************************************/
 
 html.dark-mode{
@@ -1527,4 +1541,16 @@ html.dark-mode .profile-image, html.dark-mode .profile-field, html.dark-mode .pr
 
 html.dark-mode .profile-field-label{
   color: var(--mediumBlue);
+}
+
+html.dark-mode table td{
+  background-color: var(--strongGrey);
+}
+
+html.dark-mode table tr td:hover{
+  background-color: var(--lightGrey);
+}
+
+html.dark-mode .selected{
+  background-color: var(--strongBlue);
 }
