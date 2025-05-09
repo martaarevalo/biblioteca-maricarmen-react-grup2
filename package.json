@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bwip-js": "^4.6.0",
     "date-fns": "^4.1.0",
+    "jspdf": "^3.0.1",
     "gapi-script": "^1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
