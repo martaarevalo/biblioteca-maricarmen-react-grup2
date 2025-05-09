@@ -23,11 +23,14 @@ MARK: Root
   --strongGrey: #4b4a4a;
   --lightGrey: #a3a3a3;
 
-  /* Colores 'bien' y 'mal'*/
+  /* Colores de estados*/
   --lightRed: #FDECEA;
   --strongRed: #D32F2F;
-  --lightGreen: #E8F5E9;
+  --lightGreen: #b8dcbbd4;
   --strongGreen: #388E3C;
+  --ligthYellow : #F9E79F;
+  --strongYellow: #F39C12;
+  
 
 
   --titelFont: "PlusJakartaSans";
@@ -753,42 +756,6 @@ MARK: Paginador
   padding: 0 0.5rem;
 }
 
-/*****************************************
-MARK: Estat de retorn dels exemplars
-******************************************/
-
-/*****************************************
-MARK: Estado de préstamo como curso/finalizado
-******************************************/
-
-.noRetornat {
-  position: relative;
-  opacity: 1;
-}
-
-.noRetornat::before {
-  content: "En curs";
-  display: inline-block;
-  margin-right: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--mediumBlue);
-}
-
-.retornat {
-  position: relative;
-  color: var(--strongGrey);
-  opacity: 0.6;
-}
-
-.retornat::before {
-  content: "Retornat";
-  display: inline-block;
-  margin-right: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--lightGrey);
-}
-
-
 
 /*****************************************
 MARK: ArticleUl
@@ -984,6 +951,61 @@ MARK: Admin Profile - Form
   background-color: var(--babyBlue);
 }
 
+/*****************************************
+MARK: Historial de préstamos
+******************************************/
+
+.historyBorrowsPage table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.historyBorrowsPage table th, 
+.historyBorrowsPage table td {
+  padding: 0.8rem;
+  border: 2px solid var(--babyBlue);
+  text-align: center;
+}
+
+.historyBorrowsPage table th {
+  background-color: var(--strongBlue);
+  color: var(--white);
+}
+
+.historyBorrowsPage table tr  {
+  transition: background-color 0.2s ease;
+}
+
+.historyBorrowsPage table tr:nth-child(odd) {
+  background-color: var(--white);
+}
+
+.historyBorrowsPage table tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.historyBorrowsPage table tr:hover {
+  background-color: var(--lightBlue);
+}
+
+.historyBorrowsPage table .statusText {
+  display: inline-block;
+  width: 70px;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 10px;
+}
+
+.historyBorrowsPage table .retornat .statusText{
+  border: 2px solid var(--strongGreen);
+  background-color: var(--lightGreen);
+}
+
+.historyBorrowsPage table .noRetornat .statusText{
+  border: 2px solid var(--strongYellow);
+  background-color: var(--ligthYellow);
+}
 
 /*****************************************
 MARK: Import CSV panel
@@ -1136,6 +1158,17 @@ MARK: History Page
   color: #d32f2f;
   font-size: 1.2rem;
   margin-top: 2rem;
+}
+
+/*****************************************
+MARK: Time Ago Styles
+******************************************/
+
+.time-ago {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 0.2rem;
+  display: block;
 }
 
 /*****************************************

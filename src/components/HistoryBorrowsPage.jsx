@@ -56,20 +56,35 @@ export default function HistoryBorrowsPage({ userInfo }) {
   const pageRange = getPageRange();
 
   return (
-    <div className="landingPage">
+    <div className="landingPage historyBorrowsPage">
       <div className="catalog-header">
         <h2 className="h2">Historial de préstecs</h2>
       </div>
 
-      <ul className="articleUl">
-        {currentItems.length > 0 ? (
-          currentItems.map((borrow, index) => (
-            <Item key={startIndex + index} data={borrow} forPage="borrows" />
-          ))
-        ) : (
-          <li>No hi ha préstecs per mostrar.</li>
-        )}
-      </ul>
+      <table className="articleTable">
+        <thead>
+          <tr>
+            <th>Estat</th>
+            <th>Títol</th>
+            <th>Codi Exempñar</th>
+            <th>Data de préstec</th>
+            <th>Data de retorn</th>
+            <th>Data retornat</th>
+            <th>Retornat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems.length > 0 ? (
+            currentItems.map((borrow, index) => (
+              <Item key={startIndex + index} data={borrow} forPage="borrows" />
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No hi ha préstecs per mostrar.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
       {/* Paginador */}
       {totalPages > 1 && (
