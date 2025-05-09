@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { handlePrint } from "../../services/api";
 
 export default function AsideListCode({ exemplarsList }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,10 +17,17 @@ export default function AsideListCode({ exemplarsList }) {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
+  // Función para ejecutar handlePrint con el centro correspondiente
+  const imprimirPDF = () => {
+    const centre = exemplarsList.length > 0 ? exemplarsList[0].centre : "Biblioteca";
+    handlePrint(centre, exemplarsList);
+  };
+
   return (
     <main className="asideListCode">
       {console.log(exemplarsList)}
       <h3 className="h3">Exemplars sel·leccionats</h3>
+      <button className="button" onClick={imprimirPDF}>Imprimir PDF</button>
       <ul>
         {currentItems.map((exemplar, index) => (
           <li key={index}>
