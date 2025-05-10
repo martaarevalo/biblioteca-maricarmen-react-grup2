@@ -6,6 +6,7 @@ export default function SearchByRegister({ onExemplarSelect }) {
   const [valor2, setValor2] = useState("");
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -18,12 +19,14 @@ export default function SearchByRegister({ onExemplarSelect }) {
       return;
     }
 
+    setLoading(true);
     try {
       const data = await fetchExemplarsRange(num1, num2);
       setResults(data);
     } catch (err) {
       setError("Error al buscar ejemplares.");
     }
+    setLoading(false);
   };
 
   return (
@@ -51,6 +54,12 @@ export default function SearchByRegister({ onExemplarSelect }) {
               placeholder="Ingrese el segundo número"
             />
           </div>
+          {/* Progressbar debajo de los inputs */}
+          {loading && (
+            <div className="progress-bar">
+              <div className="progress-indicator"></div>
+            </div>
+          )}
           <button className="button" type="submit">Cercar</button>
         </div>
       </form>

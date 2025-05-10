@@ -8,12 +8,15 @@ export default function SearchByCatalog({ onExemplarSelect }) {
     const [page, setPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [loading, setLoading] = useState(false);
     const resultsPerPage = 5;
 
     const handleSearch = async () => {
+        setLoading(true);
         const data = await searchItems(query);
         setResults(data);
         setPage(1);
+        setLoading(false);
     };
 
     const handleCardClick = (item) => {
@@ -36,6 +39,12 @@ export default function SearchByCatalog({ onExemplarSelect }) {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
+                {/* Progressbar */}
+                {loading && (
+                    <div className="progress-bar">
+                        <div className="progress-indicator"></div>
+                    </div>
+                )}
                 <button className="button" onClick={handleSearch}>Cercar</button>
             </div>
 
